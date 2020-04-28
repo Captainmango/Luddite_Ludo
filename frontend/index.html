@@ -1,62 +1,81 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Luddite Ludo</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <button type="button" class="btn btn-large btn-success nav-link disabled">Play a game</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle nav-link disabled" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <button class="dropdown-item">Review last game</button>
-              <button class="dropdown-item">Review game by player</button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav> 
- 
-            <div class = "col-lg text-center">    
-              <h1 class="display-1">Welcome to Luddite Ludo</h1>
-              <div style="display: none;">
-                <button type="button" class = "btn btn-success my-2 text-white">Log in</button>
-                <button type="button" class = "btn btn-secondary my-2 text-white">Sign up</button>
-              </div>
-              <div style="display: '';">
-                <button type="button" class="btn btn-large btn-outline-secondary">Die 1</button>
-                <button type="button" class="btn btn-large btn-outline-secondary">Die 2</button>
-                <button type="button" class="btn btn-primary btn-outline-secondary text-white">Roll Dice</button>
-              </div>
-              <br>
-              <canvas id="myCanvas" width="850" height="700" style="border:1px solid #2b2a2a;">
-                Your browser does not support the HTML5 canvas tag.
-              </canvas>
-              </div>
-    
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Luddite Ludo</title>
+</head>
+
+<body>
+  <!-- Nav bar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!-- play a game button-->
+        <li class="nav-item">
+          <button type="button" class="btn btn-large btn-success nav-link disabled">Play a game</a>
+        </li>
+        <!-- review games dropdown-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle nav-link disabled" href="#" id="navbarDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item">Review last game</button>
+            <button class="dropdown-item">Review game by player</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="col-lg text-center">
+    <h1 class="display-1">Welcome to Luddite Ludo</h1>
+    <!-- Log in button group-->
+    <div style="display: none;">
+      <button type="button" class="btn btn-success my-2 text-white">Log in</button>
+      <button type="button" class="btn btn-secondary my-2 text-white">Sign up</button>
+    </div>
+
+    <!-- roll dice button group-->
+    <div style="display: '';">
+      <button type="button" class="btn btn-large btn-outline-secondary">Die 1</button>
+      <button type="button" class="btn btn-large btn-outline-secondary">Die 2</button>
+      <button type="button" class="btn btn-primary btn-outline-secondary text-white">Roll Dice</button>
+    </div>
+    <br>
+    <!-- game canvas-->
+    <canvas id="myCanvas" width="850" height="700" style="border:1px solid #2b2a2a;">
+      Your browser does not support the HTML5 canvas tag.
+    </canvas>
+  </div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
