@@ -1,0 +1,1 @@
+//set dice to visible
