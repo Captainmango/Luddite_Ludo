@@ -52,7 +52,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="users/sign_up" method="post" data-remote="true">
+          <form action="users/sign_up" method="post" data-remote="true" id="signInForm">
             <div class="form-group">
               <label for="emailAddress" class="col-form-label">Email address: </label>
               <input name="email" type="text" class="form-control" id="email_address">
@@ -65,7 +65,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="newUserAccount" type="button" class="btn btn-success">Create account</button>
+          <button id="newUserAccount" type="button" class="btn btn-success" form="signInForm">Create account</button>
         </div>
       </div>
     </div>
