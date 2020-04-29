@@ -7,3 +7,8 @@
 //player class - to handle player logic
 
 //game class - to handle game logic
+
+function signIn(){
+    let form = document.getElementById('simpleModal');
+    
+}
