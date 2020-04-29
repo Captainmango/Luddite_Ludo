@@ -36,7 +36,6 @@ function signUp(email, password){
 
     let confObj = {
         method: "POST",
-        mode: "cors",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
@@ -48,6 +47,7 @@ function signUp(email, password){
     fetch(req_url, confObj).then((response)=>{
         if(response.ok){
             signInModal.style.display = "none";
+            alert("Signed in successfully");
         } else {
             signInModal.style.display = "none";
             alert("Account not created. Check your email and password");
