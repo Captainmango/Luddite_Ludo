@@ -41,9 +41,11 @@ function signUp(email, password){
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(email)
         }
     let req_url = base_url + "users";
+    console.log(formData);
+    console.log(confObj);
 
     fetch(req_url, confObj).then((response)=>{
         if(response.ok){
