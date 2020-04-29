@@ -42,19 +42,21 @@
   </nav>
 
   <body>
-    <div id="signInModal" class="modal-dialog" style="display: 'none';">
+  <div class="modal fade" id="signInModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <span id="signInClose" class="closeBtn">&times;</span>
+        <span id="signInClose" class="closeBtn" data-dismiss="modal">&times;</span>
         <p>this is a test</p>
       </div>
     </div>
+  </div>
 
   <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)">
     <h1 class="display-4 text-white"><b>Welcome To Luddite Ludo</b></h1>
     <!-- Log in button group-->
     <div style="display: '';">
       <button id="logInBtn" type="button" class="btn btn-success my-2 text-white">Log in</button>
-      <button id="signInBtn" type="button" class="btn btn-secondary my-2 text-white">Sign up</button>
+      <button id="signInBtn" type="button" class="btn btn-secondary my-2 text-white" data-toggle="modal" data-target="#signInModal">Sign up</button>
     </div>
 
     <!-- roll dice button group-->
