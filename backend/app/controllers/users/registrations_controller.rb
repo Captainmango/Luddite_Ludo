@@ -4,7 +4,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
     def create
-
+        nu_user = User.new
+        nu_user.email = params["email"]
+        nu_user.password = params["password"]
+        nu_user.save
     end
 
 end
