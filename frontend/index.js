@@ -10,27 +10,22 @@
 
 
 
+       
+var openBtn = document.getElementById('signInBtn');
+var closeBtn = document.getElementById('signInClose')
+var signInModal = document.getElementById('signInModal');
 
+openBtn.addEventListener('click', getSignIn);
+closeBtn.addEventListener('click', closeSignIn);
+
+function closeSignIn(){
+    signInModal.style.display = "none";
+}
+
+
+function getSignIn(){
     
+    signInModal.style.display = "block";
 
-   
-        
-        var openBtn = document.getElementById('signInBtn');
-        var closeBtn = document.getElementById('signInClose')
-        var signinMcdal = document.getElementById('signInModal');
-
-        openBtn.addEventListener('click', getSignIn);
-        closeBtn.addEventListener('click', closeSignIn);
-
-        function closeSignIn(){
-            signinModal.style.display = "none";
-        }
-        
-        
-        function getSignIn(){
-            var signinModal = document.getElementById('signInModal');
-            
-            signinModal.style.display = "block";
-
-        }
+}
 
