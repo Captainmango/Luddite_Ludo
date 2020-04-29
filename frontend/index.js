@@ -15,13 +15,20 @@
 
    
         
-        var btn = document.getElementById('sign_inBtn');
-        var signinMcdal = document.getElementById('simpleModal');
+        var openBtn = document.getElementById('signInBtn');
+        var closeBtn = document.getElementById('signInClose')
+        var signinMcdal = document.getElementById('signInModal');
 
-        btn.addEventListener('click', getSignIn);
+        openBtn.addEventListener('click', getSignIn);
+        closeBtn.addEventListener('click', closeSignIn);
+
+        function closeSignIn(){
+            signinModal.style.display = "none";
+        }
+        
         
         function getSignIn(){
-            var signinModal = document.getElementById('simpleModal');
+            var signinModal = document.getElementById('signInModal');
             
             signinModal.style.display = "block";
 
