@@ -9,9 +9,13 @@
 //game class - to handle game logic
 
 
-    let signinMcdal = document.getElementById('simpleModal');
-    let btn = devicePixelRatio.getElementById('sign_inBtn');
-    
+
+
     
 
-    btn.addEventListener('click', getSignIn);
+    function getSignIn(){
+        let signinMcdal = document.getElementById('simpleModal');
+        let btn = devicePixelRatio.getElementById('sign_inBtn');
+        signinModal.style.display = "block";
+
+    }
