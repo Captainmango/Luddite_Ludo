@@ -8,7 +8,7 @@
 
 //game class - to handle game logic
 
-const base_url = "http//localhost:3000";
+const base_url = "http://localhost:3000/";
 
        
 var openBtn = document.getElementById('signInBtn');
@@ -40,9 +40,9 @@ function signUp(email, password){
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: formData
+        body: JSON.stringify(formData)
         }
-    let req_url = base_url + "/users";
+    let req_url = base_url + "users";
 
     fetch(req_url, confObj).then((response)=>{
         if(response.ok){
