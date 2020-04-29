@@ -8,7 +8,10 @@
 
 //game class - to handle game logic
 
-function signIn(){
-    let form = document.getElementById('simpleModal');
+
+    let signinMcdal = document.getElementById('simpleModal');
     let btn = devicePixelRatio.getElementById('sign_inBtn');
-}
+    
+    
+
+    btn.addEventListener('click', getSignIn);
