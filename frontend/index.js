@@ -13,9 +13,17 @@
 
     
 
-    function getSignIn(){
-        let signinMcdal = document.getElementById('simpleModal');
-        let btn = devicePixelRatio.getElementById('sign_inBtn');
-        signinModal.style.display = "block";
+   
+        
+        var btn = document.getElementById('sign_inBtn');
+        var signinMcdal = document.getElementById('simpleModal');
 
-    }
+        btn.addEventListener('click', getSignIn);
+        
+        function getSignIn(){
+            var signinModal = document.getElementById('simpleModal');
+            
+            signinModal.style.display = "block";
+
+        }
+
