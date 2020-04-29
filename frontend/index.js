@@ -8,6 +8,8 @@
 
 //game class - to handle game logic
 
+//for issue with sign up form, get element by id for the fields needed for email and password
+
 const base_url = "http://localhost:3000/";
 
        
