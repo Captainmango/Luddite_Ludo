@@ -36,6 +36,7 @@ function signUp(email, password){
 
     let confObj = {
         method: "POST",
+        mode: "cors",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
