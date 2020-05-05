@@ -45,7 +45,7 @@ function signUp(){
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(email)
+        body: JSON.stringify(formData)
         }
     let req_url = base_url + "users";
     console.log(formData);
