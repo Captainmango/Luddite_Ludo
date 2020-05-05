@@ -8,6 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         nu_user.email = params["email"]
         nu_user.password = params["password"]
         nu_user.save
+        respond_with(nu_user.id)
     end
 
 end
