@@ -23,10 +23,6 @@ openBtn.addEventListener('click', getSignIn);
 closeBtn.addEventListener('click', closeSignIn);
 signInBtn.addEventListener('click', signUp);
 
-function closeSignIn() {
-    signInModal.style.display = "none";
-}
-
 function getSignIn() {
     signInModal.style.display = "block";
 }
@@ -55,8 +51,9 @@ function signUp(){
         if(response.ok){
             $("#signInModal").modal('hide');
             alert("Signed in successfully");
+            console.log(response);
         } else {
-            signInModal.style.display = "none";
+            $("#signInModal").modal('hide');
             alert("Account not created. Check your email and password");
         }
 
