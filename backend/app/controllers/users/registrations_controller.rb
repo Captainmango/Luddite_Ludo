@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-    respond_to :html, :js
+    respond_to :html, :json
 
 
     def create
@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         nu_user.email = params["email"]
         nu_user.password = params["password"]
         nu_user.save
-        respond_with(nu_user.id)
+        render json: {nu_user_id: nu_user.id}
     end
 
 end
