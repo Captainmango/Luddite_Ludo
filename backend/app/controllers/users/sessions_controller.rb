@@ -5,14 +5,14 @@ class Users::SessionsController < Devise::SessionsController
 
     def create
         user = User.find_by(email: params["email"])
-        if user.valid?
+        if !!user
             if user.valid_password?(params["password"])
                 render json: {user_id: user.id}.to_json
             else
                 render json: {user_id: nil}.to_json
             end
         else
-            render json: {user_id: nil}
+            render json: {user_id: nil}.to_json
         end
     end
 
