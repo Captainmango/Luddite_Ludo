@@ -53,7 +53,7 @@ function signUp(){
 
     fetch(req_url, confObj).then((response)=>{
         if(response.ok){
-            signInModal.style.display = "none";
+            $("#signInModal").modal('hide');
             alert("Signed in successfully");
         } else {
             signInModal.style.display = "none";
