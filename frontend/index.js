@@ -14,13 +14,11 @@ const base_url = "http://localhost:3000/";
 
        
 var openBtn = document.getElementById('signInBtn');
-var closeBtn = document.getElementById('signInClose')
 var signInModal = document.getElementById('signInModal');
 var signInBtn = document.getElementById('newUserAccount');
 
 
 openBtn.addEventListener('click', getSignIn);
-closeBtn.addEventListener('click', closeSignIn);
 signInBtn.addEventListener('click', signUp);
 
 function getSignIn() {
