@@ -31,8 +31,10 @@ function getSignIn() {
     signInModal.style.display = "block";
 }
 
-function signUp(email, password){
-    let formData = {}
+function signUp(){
+    let formData = {};
+    let email = document.getElementById("email_address");
+    let password = document.createElement("user_password");
     formData["email"] = email;
     formData["password"] = password;
 
