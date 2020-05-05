@@ -59,5 +59,40 @@ function signUp(){
             console.log(response);}  
         })}
 
+function logIn(){
+    let formData = {};
+    let email = document.getElementById("email_address").value;
+    let password = document.getElementById("user_password").value;
+    formData["email"] = email;
+    formData["password"] = password;
+
+    let confObj = {
+        method: "POST",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        }
+    let req_url = base_url + "sign_in";
+    console.log(formData);
+    console.log(confObj);
+
+    fetch(req_url, confObj).then((req)=>
+        req.json()).then(response => { 
+            if (response.nu_user_id === null){
+                alert("Could not sign up. Check email and password.");
+                $("#signInModal").modal('hide');
+            }
+            else {
+                alert("Signed up successfuly.")
+                $("#signInModal").modal('hide');
+                sessionStorage.setItem('current_user', response.nu_user_id);
+                console.log(sessionStorage);
+            console.log(response);}  
+        })}
+
+
     
 
