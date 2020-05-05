@@ -43,35 +43,6 @@
   </nav>
 
   <body>
-  <div class="modal fade" id="signInModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Create an account</h5>
-          <button id="signInClose" class="close" type="button" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form data-remote="true" id="signInForm">
-            <div class="form-group">
-              <label for="emailAddress" class="col-form-label">Email address: </label>
-              <input name="user[email]" type="text" class="form-control" id="email_address">
-            </div>
-            <div class="form-group">
-              <label for="password" class="col-form-label">Password: </label>
-              <input name="user[password]" type="password" class="form-control" id="user_password">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="newUserAccount" class="btn btn-success">Create account</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 <!-- log in modal-->
 <div class="modal fade" id="logInModal" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -102,11 +73,42 @@
   </div>
 </div>
 
+  <div class="modal fade" id="signInModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create an account</h5>
+          <button id="signInClose" class="close" type="button" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form data-remote="true" id="signInForm">
+            <div class="form-group">
+              <label for="emailAddress" class="col-form-label">Email address: </label>
+              <input name="user[email]" type="text" class="form-control" id="email_address">
+            </div>
+            <div class="form-group">
+              <label for="password" class="col-form-label">Password: </label>
+              <input name="user[password]" type="password" class="form-control" id="user_password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="newUserAccount" class="btn btn-success">Create account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)">
     <h1 class="display-4 text-white"><b>Welcome To Luddite Ludo</b></h1>
     <!-- Log in button group-->
     <div id= "acc_btns" style="display: '';">
-      <button id="logInBtn" type="button" class="btn btn-success my-2 text-white">Log in</button>
+      <button id="logInBtn" type="button" class="btn btn-success my-2 text-white" data-toggle="modal" data-target="#logInModal">Log in</button>
       <button id="signInBtn" type="button" class="btn btn-secondary my-2 text-white" data-toggle="modal" data-target="#signInModal">Sign up</button>
     </div>
 
