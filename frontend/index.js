@@ -16,13 +16,24 @@ const base_url = "http://localhost:3000/";
 var openBtn = document.getElementById('signInBtn');
 var signInModal = document.getElementById('signInModal');
 var signInBtn = document.getElementById('newUserAccount');
+var logInBtn = document.getElementById('logInBtn');
+var logInModal = document.getElementById('logInModal');
+var logInToAcc = document.getElementById('getUserAccount');
 
 
 openBtn.addEventListener('click', getSignIn);
 signInBtn.addEventListener('click', signUp);
+logInBtn.addEventListener('click', getLogIn);
+logInToAcc.addEventListener('click', logIn);
+
+
 
 function getSignIn() {
     signInModal.style.display = "block";
+}
+
+function getLogIn() {
+    logInModal.style.display = "block";
 }
 
 function signUp(){
