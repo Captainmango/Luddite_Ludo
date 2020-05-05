@@ -45,17 +45,19 @@ function signUp(){
     console.log(formData);
     console.log(confObj);
 
-    fetch(req_url, confObj).then((response)=>{
-        if(response.ok){
-            $("#signInModal").modal('hide');
-            alert("Signed in successfully");
-            console.log(response);
-        } else {
-            $("#signInModal").modal('hide');
-            alert("Account not created. Check your email and password");
-        }
+    fetch(req_url, confObj).then((req)=>
+        req.json()).then(response => { 
+            if (response.nu_user_id === null){
+                alert("Could not sign up. Check email and password.");
+                $("#signInModal").modal('hide');
+            }
+            else {
+                alert("Signed up successfuly.")
+                $("#signInModal").modal('hide');
+                sessionStorage.setItem('current_user', response.nu_user_id);
+                console.log(sessionStorage);}
+            
+        })}
 
-    })
-
-}
+    
 
