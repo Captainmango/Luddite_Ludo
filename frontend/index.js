@@ -55,8 +55,7 @@ function signUp(){
                 alert("Signed up successfuly.")
                 $("#signInModal").modal('hide');
                 sessionStorage.setItem('current_user', response.nu_user_id);
-                console.log(sessionStorage);}
-            
+                console.log(sessionStorage);}  
         })}
 
     
