@@ -33,8 +33,8 @@ function getSignIn() {
 
 function signUp(){
     let formData = {};
-    let email = document.getElementById("email_address");
-    let password = document.createElement("user_password");
+    let email = document.getElementById("email_address").value;
+    let password = document.getElementById("user_password").value;
     formData["email"] = email;
     formData["password"] = password;
 
