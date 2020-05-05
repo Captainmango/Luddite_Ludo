@@ -66,14 +66,13 @@ function signUp(){
                 alert("Signed up successfuly.")
                 $("#signInModal").modal('hide');
                 sessionStorage.setItem('current_user', response.nu_user_id);
-                console.log(sessionStorage);
-            console.log(response);}  
+            }  
         })}
 
 function logIn(){
     let formData = {};
-    let email = document.getElementById("email_address").value;
-    let password = document.getElementById("user_password").value;
+    let email = document.getElementById("acc_email_address").value;
+    let password = document.getElementById("acc_user_password").value;
     formData["email"] = email;
     formData["password"] = password;
 
@@ -86,22 +85,20 @@ function logIn(){
         },
         body: JSON.stringify(formData)
         }
-    let req_url = base_url + "sign_in";
+    let req_url = base_url + "users/sign_in";
     console.log(formData);
     console.log(confObj);
 
     fetch(req_url, confObj).then((req)=>
         req.json()).then(response => { 
             if (response.nu_user_id === null){
-                alert("Could not sign up. Check email and password.");
+                alert("Could not log in. Check email and password.");
                 $("#signInModal").modal('hide');
             }
             else {
-                alert("Signed up successfuly.")
+                alert("Logged in successfuly.")
                 $("#signInModal").modal('hide');
-                sessionStorage.setItem('current_user', response.nu_user_id);
-                console.log(sessionStorage);
-            console.log(response);}  
+                sessionStorage.setItem('current_user', response.user_id);}  
         })}
 
 

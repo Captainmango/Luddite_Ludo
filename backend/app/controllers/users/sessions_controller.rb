@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 
-    respond_to :html, :js
+    respond_to :html, :json
 
 
     def create
