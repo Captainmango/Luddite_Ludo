@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
 
 
     def destroy
-        render json: {nu_user_id: nil}.to_json
+        render json: {user_id: nil}.to_json
     end
 
 end

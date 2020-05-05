@@ -91,13 +91,13 @@ function logIn(){
 
     fetch(req_url, confObj).then((req)=>
         req.json()).then(response => { 
-            if (response.nu_user_id === null){
+            if (response.user_id === null){
                 alert("Could not log in. Check email and password.");
-                $("#signInModal").modal('hide');
+                $("#logInModal").modal('hide');
             }
             else {
                 alert("Logged in successfuly.")
-                $("#signInModal").modal('hide');
+                $("#logInModal").modal('hide');
                 sessionStorage.setItem('current_user', response.user_id);}  
         })}
 
