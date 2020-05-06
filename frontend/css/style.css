@@ -13,10 +13,10 @@
 }
 
 .container {
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 700px;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 30px;
     cursor: pointer;
     /* border: 1px solid black; */
 }
@@ -24,12 +24,12 @@
 .container-row1,
 .container-row3 {
     width: 100%;
-    height: 40%;
+    height: 150%;
 }
 
 .container-row2 {
     width: 100%;
-    height: 20%;
+    height: 100%;
 }
 
 .row1-col1,
@@ -95,7 +95,7 @@
 .row1-col3-child,
 .row3-col1-child,
 .row3-col3-child {
-    width: 70%;
+    width: 35%;
     height: 70%;
 }
 
@@ -157,7 +157,7 @@
 
 .contain-triangles {
     height: 100%;
-    width: 100%;
+    width: %;
     position: relative;
 }
 
@@ -169,7 +169,7 @@
     border-bottom: 45px solid transparent;
     position: absolute;
     left: 0;
-    top: 5.2px;
+    top: 40px;
 }
 
 .triangle-up {
@@ -180,7 +180,7 @@
     border-bottom: 45px solid #dc2418;
     position: absolute;
     bottom: 0;
-    left: 5.2px;
+    left: 40px;
 }
 
 .triangle-left {
@@ -191,7 +191,13 @@
     border-top: 45px solid transparent;
     position: absolute;
     right: 0;
-    top: 5.2px;
+    top: 40px;
+}
+
+.gameboard{
+    margin: auto;
+    height: 800px;
+    width: 900px;
 }
 
 .triangle-down {
@@ -202,7 +208,7 @@
     border-top: 45px solid #f6c700;
     position: absolute;
     top: 0;
-    right: 5.2px;
+    right: 40px;
 }
 
 .card {

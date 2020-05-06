@@ -5,6 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -105,7 +106,7 @@
 
 
   <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)">
-    <h1 class="display-4" style="color: darkslategray;"><b>Welcome To Luddite Ludo</b></h1>
+    <h1 class="display-4" style="color: darkslategray; display: 'none';"><b>Welcome To Luddite Ludo</b></h1>
     <!-- Log in button group-->
     <div id= "acc_btns" style="display: '';">
       <button id="logInBtn" type="button" class="btn btn-success my-2 text-white" data-toggle="modal" data-target="#logInModal">Log in</button>
@@ -118,9 +119,8 @@
       <button type="button" class="btn btn-large btn-outline-secondary">Die 2</button>
       <button type="button" class="btn btn-primary btn-outline-secondary text-white">Roll Dice</button>
     </div>
-    <br>
     <!-- game board-->
-    <div id= "playArea" style="display:'';">
+    <div class="gameboard centre">
       <div class="container card">
 
         <!-- First row -->
@@ -256,8 +256,9 @@
             </div>
         </div>
     </div>
-    </div>
   </div>
+  
+ 
 
 
 
