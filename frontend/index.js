@@ -19,6 +19,7 @@ var signInBtn = document.getElementById('newUserAccount');
 var logInBtn = document.getElementById('logInBtn');
 var logInModal = document.getElementById('logInModal');
 var logInToAcc = document.getElementById('getUserAccount');
+var logOutBtn = document.getElementById('logoutBtn');
 
 // update page after log in elements
 var dropDownMenu = document.getElementById('navbarDropdown');
@@ -30,6 +31,7 @@ openBtn.addEventListener('click', getSignIn);
 signInBtn.addEventListener('click', signUp);
 logInBtn.addEventListener('click', getLogIn);
 logInToAcc.addEventListener('click', logIn);
+logOutBtn.addEventListener('click', logout);
 
 
 
@@ -52,6 +54,8 @@ function current_user(){
 
 function logout(){
     sessionStorage.removeItem('current_user');
+    update_page();
+    alert("Logged out successfully.");
 }
 
 function is_logged_in(){
@@ -105,6 +109,7 @@ function signUp(){
                 alert("Signed up successfuly.")
                 $("#signInModal").modal('hide');
                 sessionStorage.setItem('current_user', response.nu_user_id);
+                $("#signInModal").on('hidden.bs.modal' , update_page());
             }  
         })}
 
@@ -135,11 +140,10 @@ function logIn(){
             else {
                 alert("Logged in successfuly.")
                 $("#logInModal").modal('hide');
-                sessionStorage.setItem('current_user', response.user_id);}  
+                sessionStorage.setItem('current_user', response.user_id);
+                $("#logInModal").on('hidden.bs.modal' , update_page());}  
         })}
 
-$("#logInModal").on("hide.bs.modal",update_page());
-$("#signInModal").on("hide.bs.modal",update_page());
 
 
     
