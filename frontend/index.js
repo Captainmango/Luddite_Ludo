@@ -34,7 +34,6 @@ logInToAcc.addEventListener('click', logIn);
 logOutBtn.addEventListener('click', logout);
 
 
-
 function getSignIn() {
     signInModal.style.display = "block";
 }
