@@ -94,8 +94,6 @@ function signUp(){
         body: JSON.stringify(formData)
         }
     let req_url = base_url + "users";
-    console.log(formData);
-    console.log(confObj);
 
     fetch(req_url, confObj).then((req)=>
         req.json()).then(response => { 
@@ -127,8 +125,6 @@ function logIn(){
         body: JSON.stringify(formData)
         }
     let req_url = base_url + "users/sign_in";
-    console.log(formData);
-    console.log(confObj);
 
     fetch(req_url, confObj).then((req)=>
         req.json()).then(response => { 
