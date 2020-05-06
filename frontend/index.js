@@ -12,7 +12,7 @@
 
 const base_url = "http://localhost:3000/";
 
-       
+// log in and sign in buttons   
 var openBtn = document.getElementById('signInBtn');
 var signInModal = document.getElementById('signInModal');
 var signInBtn = document.getElementById('newUserAccount');
@@ -20,6 +20,7 @@ var logInBtn = document.getElementById('logInBtn');
 var logInModal = document.getElementById('logInModal');
 var logInToAcc = document.getElementById('getUserAccount');
 
+// update page after log in elements
 var dropDownMenu = document.getElementById('navbarDropdown');
 var playGameBtn = document.getElementById('playGameBtn');
 var accBtns = document.getElementById('acc_btns');
@@ -64,7 +65,14 @@ function is_logged_in(){
 
 function update_page(){
     if(is_logged_in()){
-        
+        dropDownMenu.classList.remove('disabled');
+        playGameBtn.classList.remove('disabled');
+        accBtns.style.display = "none";
+    } else {
+        dropDownMenu.classList.add('disabled')
+        playGameBtn.classList.add('disabled');
+        accBtns.style.display = "";
+
     }
 }
 
@@ -133,6 +141,9 @@ function logIn(){
                 $("#logInModal").modal('hide');
                 sessionStorage.setItem('current_user', response.user_id);}  
         })}
+
+$("#logInModal").on("hide.bs.modal",update_page());
+$("#signInModal").on("hide.bs.modal",update_page());
 
 
     
