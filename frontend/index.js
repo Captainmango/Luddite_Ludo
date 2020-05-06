@@ -36,6 +36,16 @@ function getLogIn() {
     logInModal.style.display = "block";
 }
 
+function current_user(){
+    if(isNaN(parseInt(sessionStorage.getItem('current_user'),10))){
+            return false}
+        else{
+            
+            return parseInt(sessionStorage.getItem('current_user'),10)
+        }
+    }
+
+
 function signUp(){
     let formData = {};
     let email = document.getElementById("email_address").value;
