@@ -20,6 +20,10 @@ var logInBtn = document.getElementById('logInBtn');
 var logInModal = document.getElementById('logInModal');
 var logInToAcc = document.getElementById('getUserAccount');
 
+var dropDownMenu = document.getElementById('navbarDropdown');
+var playGameBtn = document.getElementById('playGameBtn');
+var accBtns = document.getElementById('acc_btns');
+
 
 openBtn.addEventListener('click', getSignIn);
 signInBtn.addEventListener('click', signUp);
@@ -56,6 +60,12 @@ function is_logged_in(){
         return false
     }
 
+}
+
+function update_page(){
+    if(is_logged_in()){
+        
+    }
 }
 
 
