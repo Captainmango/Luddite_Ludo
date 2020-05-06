@@ -3,13 +3,19 @@ class Game{
         this.player = current_user();
         this.turns = 0;
         this.turnCounter = 0;
+        this.colours = ["red", "green", "yellow", "blue"]
     }
     selectColour(index){
-        return colours[index]
+        return this.colours[index]
     }
 
     rollDice(){
         return 1 + Math.floor(Math.random()*6)
+    }
+
+    selectToken(){
+        if()
+
     }
 
     gameTurn(){
