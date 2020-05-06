@@ -25,6 +25,7 @@ var logOutBtn = document.getElementById('logoutBtn');
 var dropDownMenu = document.getElementById('navbarDropdown');
 var playGameBtn = document.getElementById('playGameBtn');
 var accBtns = document.getElementById('acc_btns');
+var playArea = document.getElementById('playArea');
 
 
 openBtn.addEventListener('click', getSignIn);
@@ -71,10 +72,12 @@ function update_page(){
         dropDownMenu.classList.remove('disabled');
         playGameBtn.classList.remove('disabled');
         accBtns.style.display = "none";
+        playArea.style.display = "";
     } else {
         dropDownMenu.classList.add('disabled')
         playGameBtn.classList.add('disabled');
         accBtns.style.display = "";
+        playArea.style.display = "none";
 
     }
 }
