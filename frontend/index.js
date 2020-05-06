@@ -45,6 +45,10 @@ function current_user(){
         }
     }
 
+function logout(){
+    sessionStorage.removeItem('current_user');
+}
+
 
 function signUp(){
     let formData = {};
