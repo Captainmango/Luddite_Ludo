@@ -49,6 +49,15 @@ function logout(){
     sessionStorage.removeItem('current_user');
 }
 
+function is_logged_in(){
+    if(current_user()){
+        return true
+    } else {
+        return false
+    }
+
+}
+
 
 function signUp(){
     let formData = {};
