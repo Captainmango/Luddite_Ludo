@@ -178,22 +178,22 @@ function ResetPawn(victim) {
     positions[victim] = 0;
     var pawnToMove = document.getElementById(victim);
     switch (victim) {
-        case "redpawn1": pawnToMove.style.top = 149 + "px"; pawnToMove.style.left = 442 + "px"; break;
-        case "redpawn2": pawnToMove.style.top = 102 + "px"; pawnToMove.style.left = 395 + "px"; break;
-        case "redpawn3": pawnToMove.style.top = 55 + "px"; pawnToMove.style.left = 442 + "px"; break;
-        case "redpawn4": pawnToMove.style.top = 102 + "px"; pawnToMove.style.left = 490 + "px"; break;
-        case "bluepawn1": pawnToMove.style.top = 451 + "px"; pawnToMove.style.left = 490 + "px"; break;
-        case "bluepawn2": pawnToMove.style.top = 451 + "px"; pawnToMove.style.left = 395 + "px"; break;
-        case "bluepawn3": pawnToMove.style.top = 404 + "px"; pawnToMove.style.left = 442 + "px"; break;
-        case "bluepawn4": pawnToMove.style.top = 498 + "px"; pawnToMove.style.left = 442 + "px"; break;
-        case "greenpawn1": pawnToMove.style.top = 149 + "px"; pawnToMove.style.left = 93 + "px"; break;
-        case "greenpawn2": pawnToMove.style.top = 102 + "px"; pawnToMove.style.left = 140 + "px"; break;
-        case "greenpawn3": pawnToMove.style.top = 55 + "px"; pawnToMove.style.left = 93 + "px"; break;
-        case "greenpawn4": pawnToMove.style.top = 102 + "px"; pawnToMove.style.left = 47 + "px"; break;
-        case "yellowpawn1": pawnToMove.style.top = 451 + "px"; pawnToMove.style.left = 47 + "px"; break;
-        case "yellowpawn2": pawnToMove.style.top = 451 + "px"; pawnToMove.style.left = 140 + "px"; break;
-        case "yellowpawn3": pawnToMove.style.top = 404 + "px"; pawnToMove.style.left = 93 + "px"; break;
-        case "yellowpawn4": pawnToMove.style.top = 498 + "px"; pawnToMove.style.left = 93 + "px"; break;
+        case "redpawn1": pawnToMove.style.top = 310 + "px"; pawnToMove.style.left = 660 + "px"; break;
+        case "redpawn2": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 553 + "px"; break;
+        case "redpawn3": pawnToMove.style.top = 215 + "px"; pawnToMove.style.left = 660 + "px"; break;
+        case "redpawn4": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 647 + "px"; break;
+        case "bluepawn1": pawnToMove.style.top = 563 + "px"; pawnToMove.style.left = 600 + "px"; break;
+        case "bluepawn2": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 553 + "px"; break;
+        case "bluepawn3": pawnToMove.style.top = 657 + "px"; pawnToMove.style.left = 600 + "px"; break;
+        case "bluepawn4": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 647 + "px"; break;
+        case "greenpawn1": pawnToMove.style.top = 310 + "px"; pawnToMove.style.left = 250 + "px"; break;
+        case "greenpawn2": pawnToMove.style.top = 215 + "px"; pawnToMove.style.left = 250 + "px"; break;
+        case "greenpawn3": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 203 + "px"; break;
+        case "greenpawn4": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 297 + "px"; break;
+        case "yellowpawn1": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 203 + "px"; break;
+        case "yellowpawn2": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 297 + "px"; break;
+        case "yellowpawn3": pawnToMove.style.top = 563 + "px"; pawnToMove.style.left = 250 + "px"; break;
+        case "yellowpawn4": pawnToMove.style.top = 657 + "px"; pawnToMove.style.left = 250 + "px"; break;
 
     }
 }
@@ -230,23 +230,23 @@ function randomMove(Color, paw) {
                         var curr = Number(doc.style.left.replace(/[a-z]/g, ''));
                         switch (Color) {
                             case "red":
-                                doc.style.left = 318 + 'px';
-                                doc.style.top = 28 + "px";
+                                doc.style.left = 476 + 'px';
+                                doc.style.top = 189 + "px";
                                 break;
 
                             case "yellow":
-                                doc.style.left = 219 + 'px';
-                                doc.style.top = 523 + "px";
+                                doc.style.left = 375 + 'px';
+                                doc.style.top = 680 + "px";
                                 break;
 
                             case "blue":
-                                doc.style.left = 516 + 'px';
-                                doc.style.top = 325 + "px";
+                                doc.style.left = 672 + 'px';
+                                doc.style.top = 484 + "px";
                                 break;
 
                             case "green":
-                                doc.style.left = 21 + 'px';
-                                doc.style.top = 226 + "px";
+                                doc.style.left = 515 + 'px';
+                                doc.style.top = 326 + "px";
                                 break;
                         }
                         onboard[currpawn] = 1;
