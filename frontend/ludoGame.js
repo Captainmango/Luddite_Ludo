@@ -9,6 +9,17 @@ class Game{
         this.clicked = false;
         this.currentToken = "";
         this.tokenOut = {red:0, blue:0, green:0, yellow:0};
+        this.positions = {
+            redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
+            bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
+            greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
+            yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
+        };
+        this.onboard = {
+            redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
+            bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
+            greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
+            yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
 
     }
 
