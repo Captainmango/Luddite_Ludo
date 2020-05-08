@@ -31,11 +31,11 @@ class Game{
         let toKill = "";
         for (let i = 0; i < colours.length; i++) {
             for (let n = 1; n <= 4; n++) {
-                let firstPawn = document.getElementById(colours[i] + "pawn" + n);
-                let secondPawn = document.getElementById(currentToken);
+                let firstPawn = document.getElementById(this.colours[i] + "pawn" + n);
+                let secondPawn = document.getElementById(this.currentToken);
                 if (firstPawn.style.top == secondPawn.style.top && firstPawn.style.left == secondPawn.style.left && currentColour != colours[i] && currentPosition+num<44) {
                 count++;
-                toKill = colours[i] + "pawn" + n;
+                toKill = this.colours[i] + "pawn" + n;
                 return toKill;
             }
         }
@@ -44,7 +44,7 @@ class Game{
     }
 
     changePlayer = () => {
-        if (roll != 6){
+        if (this.roll != 6){
         let text = document.getElementById('player');
         switch (text.innerText) {
             case "red": text.innerText = text.style.color = "blue"; break;
@@ -62,122 +62,122 @@ class Game{
     dontHaveOtherFree() {
         let text = document.getElementById('player');
         for (var i = 1; i <=4; i++) {
-            if (onboard[text.innerText + "pawn" + i] == 1 || positions[text.innerText + "pawn" + i] + num >= 44) return false;
+            if (this.onboard[text.innerText + "pawn" + i] == 1 || this.positions[text.innerText + "pawn" + i] + this.roll >= 44) return false;
         }
         return true;
     }
 
     CheckForWinner() {
-        if (tokenOut[currentColour] == 4) {
+        if (this.tokenOut[this.currentColour] == 4) {
             let dice = document.getElementById("dice");
             let player = document.getElementById("player");
             let message = document.getElementById("message");
             dice.innerText = "";
             dice.style.visibility = "hidden";
             message.innerText = "";
-            player.innerText = "The Winner is the "+ currentColour +" player";
+            player.innerText = "The Winner is the "+ this.currentColour +" player";
         }
     }
 
     stepDown() {
-        let doc = document.getElementById(currpawn);
+        let doc = document.getElementById(currentToken);
         let space = Number(doc.style.top.replace(/[a-z]/g, ''));
         doc.style.top = (space + step)+'px';
-        currentPosition++;
+        this.currentPosition++;
     }
     stepUp() {
-        let doc = document.getElementById(currpawn);
+        let doc = document.getElementById(currentToken);
         let space = Number(doc.style.top.replace(/[a-z]/g, ''));
         doc.style.top = (space - step) + 'px';
-        currentPosition++;
+        this.currentPosition++;
     }
     stepLeft() {
-        let doc = document.getElementById(currpawn);
+        let doc = document.getElementById(currentToken);
         let space = Number(doc.style.left.replace(/[a-z]/g, ''));
         doc.style.left = (space - step) + 'px';
-        currentPosition++;
+        this.currentPosition++;
     }
     stepRight() {
-        let doc = document.getElementById(currpawn);
+        let doc = document.getElementById(currentToken);
         let space = Number(doc.style.left.replace(/[a-z]/g, ''));
         doc.style.left = (space + step) + 'px';
-        currentPosition++;
+        this.currentPosition++;
     }
-
 
 
     pushSteps(value, steps, count) {
         for (i = 0; i < count; i++) steps.push(value);
     }
+
     //Red tokens path
     makeRedRoute(){
-        pushSteps(stepDown, stepsRed, 4);
-        pushSteps(stepRight, stepsRed, 4);
-        pushSteps(stepDown, stepsRed, 2);
-        pushSteps(stepLeft, stepsRed, 4);
-        pushSteps(stepDown, stepsRed, 4);
-        pushSteps(stepLeft, stepsRed, 2);
-        pushSteps(stepUp, stepsRed, 4);
-        pushSteps(stepLeft, stepsRed, 4);
-        pushSteps(stepUp, stepsRed, 2);
-        pushSteps(stepRight, stepsRed, 4);
-        pushSteps(stepUp, stepsRed, 4);
-        pushSteps(stepRight, stepsRed, 1);
-        pushSteps(stepDown, stepsRed, 5);
+        this.pushSteps(stepDown, stepsRed, 4);
+        this.pushSteps(stepRight, stepsRed, 4);
+        this.pushSteps(stepDown, stepsRed, 2);
+        this.pushSteps(stepLeft, stepsRed, 4);
+        this.pushSteps(stepDown, stepsRed, 4);
+        this.pushSteps(stepLeft, stepsRed, 2);
+        this.pushSteps(stepUp, stepsRed, 4);
+        this.pushSteps(stepLeft, stepsRed, 4);
+        this.pushSteps(stepUp, stepsRed, 2);
+        this.pushSteps(stepRight, stepsRed, 4);
+        this.pushSteps(stepUp, stepsRed, 4);
+        this.pushSteps(stepRight, stepsRed, 1);
+        this.pushSteps(stepDown, stepsRed, 5);
     }
 
     //Yellow tokens path
     makeYellowRoute(){
-        pushSteps(stepUp, stepsYellow, 4);
-        pushSteps(stepLeft, stepsYellow, 4);
-        pushSteps(stepUp, stepsYellow, 2);
-        pushSteps(stepRight, stepsYellow, 4);
-        pushSteps(stepUp, stepsYellow, 4);
-        pushSteps(stepRight, stepsYellow, 2);
-        pushSteps(stepDown, stepsYellow, 4);
-        pushSteps(stepRight, stepsYellow, 4);
-        pushSteps(stepDown, stepsYellow, 2);
-        pushSteps(stepLeft, stepsYellow, 4);
-        pushSteps(stepDown, stepsYellow, 4);
-        pushSteps(stepLeft, stepsYellow, 1);
-        pushSteps(stepUp, stepsYellow, 5);
+        this.pushSteps(stepUp, stepsYellow, 4);
+        this.pushSteps(stepLeft, stepsYellow, 4);
+        this.pushSteps(stepUp, stepsYellow, 2);
+        this.pushSteps(stepRight, stepsYellow, 4);
+        this.pushSteps(stepUp, stepsYellow, 4);
+        this.pushSteps(stepRight, stepsYellow, 2);
+        this.pushSteps(stepDown, stepsYellow, 4);
+        this.pushSteps(stepRight, stepsYellow, 4);
+        this.pushSteps(stepDown, stepsYellow, 2);
+        this.pushSteps(stepLeft, stepsYellow, 4);
+        this.pushSteps(stepDown, stepsYellow, 4);
+        this.pushSteps(stepLeft, stepsYellow, 1);
+        this.pushSteps(stepUp, stepsYellow, 5);
     }
 
         //Blue tokens path
     makeBlueRoute(){
-        pushSteps(stepLeft, stepsBlue, 4);
-        pushSteps(stepDown, stepsBlue, 4);
-        pushSteps(stepLeft, stepsBlue, 2);
-        pushSteps(stepUp, stepsBlue, 4);
-        pushSteps(stepLeft, stepsBlue, 4);
-        pushSteps(stepUp, stepsBlue, 2);
-        pushSteps(stepRight, stepsBlue, 4);
-        pushSteps(stepUp, stepsBlue, 4);
-        pushSteps(stepRight, stepsBlue, 2);
-        pushSteps(stepDown, stepsBlue, 4);
-        pushSteps(stepRight, stepsBlue, 4);
-        pushSteps(stepDown, stepsBlue, 1);
-        pushSteps(stepLeft, stepsBlue, 5);
+        this.pushSteps(stepLeft, stepsBlue, 4);
+        this.pushSteps(stepDown, stepsBlue, 4);
+        this.pushSteps(stepLeft, stepsBlue, 2);
+        this.pushSteps(stepUp, stepsBlue, 4);
+        this.pushSteps(stepLeft, stepsBlue, 4);
+        this.pushSteps(stepUp, stepsBlue, 2);
+        this.pushSteps(stepRight, stepsBlue, 4);
+        this.pushSteps(stepUp, stepsBlue, 4);
+        this.pushSteps(stepRight, stepsBlue, 2);
+        this.pushSteps(stepDown, stepsBlue, 4);
+        this.pushSteps(stepRight, stepsBlue, 4);
+        this.pushSteps(stepDown, stepsBlue, 1);
+        this.pushSteps(stepLeft, stepsBlue, 5);
     }
         //Green tokens path
     makeGreenPaths(){
-        pushSteps(stepRight, stepsGreen, 4);
-        pushSteps(stepUp, stepsGreen, 4);
-        pushSteps(stepRight, stepsGreen, 2);
-        pushSteps(stepDown, stepsGreen, 4);
-        pushSteps(stepRight, stepsGreen, 4);
-        pushSteps(stepDown, stepsGreen, 2);
-        pushSteps(stepLeft, stepsGreen, 4);
-        pushSteps(stepDown, stepsGreen, 4);
-        pushSteps(stepLeft, stepsGreen, 2);
-        pushSteps(stepUp, stepsGreen, 4);
-        pushSteps(stepLeft, stepsGreen, 4);
-        pushSteps(stepUp, stepsGreen, 1);
-        pushSteps(stepRight, stepsGreen, 5);
+        this.pushSteps(stepRight, stepsGreen, 4);
+        this.pushSteps(stepUp, stepsGreen, 4);
+        this.pushSteps(stepRight, stepsGreen, 2);
+        this.pushSteps(stepDown, stepsGreen, 4);
+        this.pushSteps(stepRight, stepsGreen, 4);
+        this.pushSteps(stepDown, stepsGreen, 2);
+        this.pushSteps(stepLeft, stepsGreen, 4);
+        this.pushSteps(stepDown, stepsGreen, 4);
+        this.pushSteps(stepLeft, stepsGreen, 2);
+        this.pushSteps(stepUp, stepsGreen, 4);
+        this.pushSteps(stepLeft, stepsGreen, 4);
+        this.pushSteps(stepUp, stepsGreen, 1);
+        this.pushSteps(stepRight, stepsGreen, 5);
     }
     resetToken(victim) {
-        onboard[victim] = 0;
-        positions[victim] = 0;
+        this.onboard[victim] = 0;
+        this.positions[victim] = 0;
         let pawnToMove = document.getElementById(victim);
         switch (victim) {
             case "redpawn1": pawnToMove.style.top = 310 + "px"; pawnToMove.style.left = 600 + "px"; break;
@@ -202,36 +202,36 @@ class Game{
     
     rolldice() {
         if (!clicked) {
-            roll = Math.floor((Math.random() * 6) + 1);
+            this.roll = Math.floor((Math.random() * 6) + 1);
             let dice = document.getElementById('dice');
-            dice.style.backgroundImage = "url(../Images/" + num + ".jpg)";
-            clicked = true;
+            dice.style.backgroundImage = "url(../Images/" + this.roll + ".jpg)";
+            this.clicked = true;
         }
-        if (roll != 6&&DontHaveOtherFree()) {
+        if (roll != 6 && this.DontHaveOtherFree()) {
             let message = document.getElementById('message');
             bad.innerText = "You are stuck and cannot move";
             window.setTimeout(changePlayer, 1000);
-            clicked = false;
+            this.clicked = false;
         }
     }
 
     selectTokenAndMove(colour, token){
         let text = document.getElementById('player');
-        numOfToken = token;
-        currColour = colour;
-        currentToken = currentColour + "pawn" + numOfToken;
-        currentPosition = positions[currentToken];
-        if (roll + currentPosition > 44) {
-            Stuck();
+        this.numOfToken = token;
+        this.currentColour = colour;
+        this.currentToken = this.currentColour + "pawn" + this.numOfToken;
+        this.currentPosition = this.positions[currentToken];
+        if (this.roll + this.currentPosition > 44) {
+            this.Stuck();
         }
         else {
             if (clicked) {
-                let position = currentPosition;
-                if (text.innerText == currentColour) {
-                    if (onboard[currentToken] === 1 || roll === 6) {
-                        if (onboard[currentToken] === 0) {
+                let position = this.currentPosition;
+                if (text.innerText == this.currentColour) {
+                    if (this.onboard[this.currentToken] === 1 || this.roll === 6) {
+                        if (this.onboard[this.currentToken] === 0) {
                             let doc = document.getElementById(currentToken);
-                            let curr = Number(doc.style.left.replace(/[a-z]/g, ''));
+                            let space = Number(doc.style.left.replace(/[a-z]/g, ''));
                             switch (colour) {
                                 case "red":
                                     doc.style.left = 476 + 'px';
