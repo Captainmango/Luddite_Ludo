@@ -14,7 +14,7 @@ class Game{
             bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
             greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
             yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
-        };
+        }
         this.onboard = {
             redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
             bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
@@ -22,6 +22,7 @@ class Game{
             yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
 
     }
+}
 
     isSharingSpace(){
         let count = 0;
@@ -40,22 +41,10 @@ class Game{
     return false;
     }
 
-    stuck(){
-        let text = document.getElementById('player');
-        if (onboard[currentToken] == 0 || currentPosition + num > 44) {
-            if (DontHaveOtherFree() || currPos + num > 44) {
-                let message = document.getElementById('message');
-                message.innerText = "You are stuck and cannot move";
-                clicked = false;
-                let dice = document.getElementById('dice');
-                dice.style.backgroundImage = "";
-                window.setTimeout(changePlayer(), 1000);
-            }
-        }
-    changePlayer() {
+    changePlayer = () => {
         if (roll != 6){
-        let playerColour = document.getElementById('playerColour');
-        switch (playerColour.innerText) {
+        let text = document.getElementById('player');
+        switch (text.innerText) {
             case "red": text.innerText = text.style.color = "blue"; break;
             case "blue": text.innerText = text.style.color = "yellow"; break;
             case "yellow": text.innerText = text.style.color = "green"; break;
@@ -64,37 +53,20 @@ class Game{
         }
         let message = document.getElementById('message');
         message.innerText = "";
-        var dice = document.getElementById('dice');
+        let dice = document.getElementById('dice');
         dice.style.backgroundImage = "";
     }
-
-    gameWon(){
-        //if token is in win zone end game with confirm to replay
-    }
-
-    gameStart(){
-        //start the game by rolling dice. Red always goes first.
-
-    }
-
-    static getLastGame(){
-        // the turns for the last game
-    }
-
-    static replayGame(){
-        // game using gameplay loop
-    }
-
-    rollDice(){
+    
+    rolldice() {
         if (!clicked) {
-            num = Math.floor((Math.random() * 6) + 1);
+            roll = Math.floor((Math.random() * 6) + 1);
             let dice = document.getElementById('dice');
             dice.style.backgroundImage = "url(../Images/" + num + ".jpg)";
             clicked = true;
         }
-        if (num != 6&&DontHaveOtherFree()) {
-            var bad = document.getElementById('badtext');
-            bad.innerText = "Unfortunatlly you stuck";
+        if (roll != 6&&DontHaveOtherFree()) {
+            let message = document.getElementById('message');
+            bad.innerText = "You are stuck and cannot move";
             window.setTimeout(changePlayer, 1000);
             clicked = false;
         }
@@ -143,42 +115,42 @@ class Game{
                         else {
                             switch (colour) {
                                 case "red":
-                                    for (i = currPos; i < position + num; i++) {
+                                    for (i = currentPosition; i < position + roll; i++) {
                                         stepsRed[i]();
                                     }
                                     break;
 
                                 case "yellow":
-                                    for (i = currPos; i < position + num; i++) {
+                                    for (i = currentPosition; i < position + roll; i++) {
                                         stepsYellow[i]();
                                     }
                                     break;
 
                                 case "blue":
-                                    for (i = currPos; i < position + num; i++) {
+                                    for (i = currentPosition; i < position + roll; i++) {
                                         stepsBlue[i]();
                                     }
                                     break;
 
                                 case "green":
-                                    for (i = currPos; i < position + num; i++) {
+                                    for (i = currentPosition; i < position + roll; i++) {
                                         stepsGreen[i]();
                                     }
                                     break;
                             }
-                            positions[currpawn] = currPos;
-                            var victim = HaveHover();
+                            positions[currentToken] = currentPosition;
+                            let victim = isSharingSpace();
                             if (victim != false) {
-                                ResetPawn(victim);
+                                resetToken(victim);
                             }
-                            if (currPos == 44) { pawnOut[currcolor]++; onboard[currpawn] = 0; positions[currpawn] = 0; document.getElementById(currpawn).style.visibility = "hidden"; };
+                            if (currentPosition == 44) { pawnOut[currcolor]++; onboard[currpawn] = 0; positions[currpawn] = 0; document.getElementById(currpawn).style.visibility = "hidden"; };
                             CheckForWinner();
                             changePlayer();
                         }
-                        num = 0;
+                        roll = 0;
                         clicked = false;
-                        var dice = document.getElementById('dice');
-                        dice.style.backgroundImage = "url(Images/dice.gif)";
+                        let dice = document.getElementById('dice');
+                        dice.style.backgroundImage = "";
                     }
                     else Stuck();
                 }
@@ -187,20 +159,6 @@ class Game{
 
     }
 
-        gameTurn(){
-            this.turns++
-            let colour = selectColour(turnCounter);
-            let roll = rollDice();
-            let token = selectToken();
-            moveToken();
-            let nu_turn = new Turn(colour, token, roll);
-            if(this.turnCounter >= 4){
-                this.turnCounter=0
-            } else {
-                this.turnCounter++
-            }
-
-        }
 
 }
 
