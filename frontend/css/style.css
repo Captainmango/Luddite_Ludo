@@ -220,6 +220,31 @@
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+#main{
+    width:1000px;
+    float:left;
+}
+.pawns{
+    width:30px;
+    height:30px;
+    border-radius:20px;
+    position:absolute;
+}
+#board{
+    background:url(Images/board.gif) no-repeat;
+    background-size:cover;
+    width:650px;
+    height:550px;
+    float:left;
+    margin-top:8px;
+}
+#uselesstext1{
+    float:left;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+
 @media only screen and (max-width: 600px) {
     .container {
         width: 400px;

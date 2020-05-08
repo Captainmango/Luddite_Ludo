@@ -10,11 +10,11 @@ class Game{
     }
 
     rollDice(){
-        return 1 + Math.floor(Math.random()*6)
+        return console.log(1 + Math.floor(Math.random()*6))
     }
 
     selectToken(){
-        if()
+        
 
     }
 
