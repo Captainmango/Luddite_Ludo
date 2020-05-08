@@ -10,6 +10,18 @@
 
 //for issue with sign up form, get element by id for the fields needed for email and password
 
+class Game {
+    constructor(player){
+        this.player = current_user;
+    }
+}
+
+class Turn{
+    constructor(){
+        
+    }
+}
+
 const base_url = "http://localhost:3000/";
 
 // log in and sign in buttons   
