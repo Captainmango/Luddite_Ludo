@@ -169,6 +169,31 @@ class Game{
     pushSteps(stepLeft, stepsGreen, count = 4);
     pushSteps(stepUp, stepsGreen, count = 1);
     pushSteps(stepRight, stepsGreen, count = 5);
+
+    resetToken(victim) {
+        onboard[victim] = 0;
+        positions[victim] = 0;
+        let pawnToMove = document.getElementById(victim);
+        switch (victim) {
+            case "redpawn1": pawnToMove.style.top = 310 + "px"; pawnToMove.style.left = 600 + "px"; break;
+            case "redpawn2": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 553 + "px"; break;
+            case "redpawn3": pawnToMove.style.top = 215 + "px"; pawnToMove.style.left = 600 + "px"; break;
+            case "redpawn4": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 647 + "px"; break;
+            case "bluepawn1": pawnToMove.style.top = 563 + "px"; pawnToMove.style.left = 600 + "px"; break;
+            case "bluepawn2": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 553 + "px"; break;
+            case "bluepawn3": pawnToMove.style.top = 657 + "px"; pawnToMove.style.left = 600 + "px"; break;
+            case "bluepawn4": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 647 + "px"; break;
+            case "greenpawn1": pawnToMove.style.top = 310 + "px"; pawnToMove.style.left = 250 + "px"; break;
+            case "greenpawn2": pawnToMove.style.top = 215 + "px"; pawnToMove.style.left = 650 + "px"; break;
+            case "greenpawn3": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 203 + "px"; break;
+            case "greenpawn4": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 297 + "px"; break;
+            case "yellowpawn1": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 203 + "px"; break;
+            case "yellowpawn2": pawnToMove.style.top = 609 + "px"; pawnToMove.style.left = 297 + "px"; break;
+            case "yellowpawn3": pawnToMove.style.top = 563 + "px"; pawnToMove.style.left = 250 + "px"; break;
+            case "yellowpawn4": pawnToMove.style.top = 657 + "px"; pawnToMove.style.left = 250 + "px"; break;
+    
+        }
+    }
     
     rolldice() {
         if (!clicked) {
