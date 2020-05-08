@@ -1,16 +1,19 @@
 class Game{
-    constructor(player, turns, turnCounter){
-        this.player = current_user();
-        this.turns = 0;
-        this.turnCounter = 0;
-        this.colours = ["red", "green", "yellow", "blue"]
-    }
-    selectColour(index){
-        return this.colours[index]
+    constructor(player){
+        this.player = player;
+        this.colours = ["red", "blue", "green", "yellow"];
+        this.currentPosition = 0;
+        this.currentColour = "";
+        this.numOfToken = "";
+        this.roll = 0;
+        this.clicked = false;
+        this.currentToken = "";
+        this.tokenOut = {red:0, blue:0, green:0, yellow:0};
+
     }
 
     rollDice(){
-        return console.log(1 + Math.floor(Math.random()*6))
+        
     }
 
     selectToken(){
@@ -68,3 +71,4 @@ class Turn {
 
     }
 }
+
