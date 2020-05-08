@@ -2,7 +2,8 @@ class Game{
     constructor(player){
         this.player = player;
         this.colours = ["red", "blue", "green", "yellow"];
-        this.currentPosition = 0;
+        this.currentPosition = 44;
+        this.step = 49.5;
         this.currentColour = "";
         this.numOfToken = "";
         this.roll = 0;
@@ -13,15 +14,16 @@ class Game{
             redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
             bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
             greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
-            yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
-        }
+            yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0}
         this.onboard = {
             redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
             bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
             greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
-            yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
-
-    }
+            yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0}
+        this.stepsRed = [];
+        this.stepsYellow = [];
+        this.stepsBlue = [];
+        this.stepsGreen = [];
 }
 
     isSharingSpace(){
@@ -56,6 +58,117 @@ class Game{
         let dice = document.getElementById('dice');
         dice.style.backgroundImage = "";
     }
+
+    dontHaveOtherFree() {
+        let text = document.getElementById('player');
+        for (var i = 1; i <=4; i++) {
+            if (onboard[text.innerText + "pawn" + i] == 1 || positions[text.innerText + "pawn" + i] + num >= 44) return false;
+        }
+        return true;
+    }
+
+    CheckForWinner() {
+        if (tokenOut[currentColour] == 4) {
+            let dice = document.getElementById("dice");
+            let player = document.getElementById("player");
+            let message = document.getElementById("message");
+            dice.innerText = "";
+            dice.style.visibility = "hidden";
+            message.innerText = "";
+            player.innerText = "The Winner is the "+ currentColour +" player";
+        }
+    }
+
+    stepDown() {
+        let doc = document.getElementById(currpawn);
+        let space = Number(doc.style.top.replace(/[a-z]/g, ''));
+        doc.style.top = (space + step)+'px';
+        currentPosition++;
+    }
+    stepUp() {
+        let doc = document.getElementById(currpawn);
+        let space = Number(doc.style.top.replace(/[a-z]/g, ''));
+        doc.style.top = (space - step) + 'px';
+        currentPosition++;
+    }
+    stepLeft() {
+        let doc = document.getElementById(currpawn);
+        let space = Number(doc.style.left.replace(/[a-z]/g, ''));
+        doc.style.left = (space - step) + 'px';
+        currentPosition++;
+    }
+    stepRight() {
+        let doc = document.getElementById(currpawn);
+        let space = Number(doc.style.left.replace(/[a-z]/g, ''));
+        doc.style.left = (space + step) + 'px';
+        currentPosition++;
+    }
+
+
+
+    pushSteps(value, steps, count) {
+        for (i = 0; i < count; i++) steps.push(value);
+    }
+    //Red tokens path
+    pushSteps(stepDown, stepsRed ,count = 4);
+    pushSteps(stepRight, stepsRed, count = 4);
+    pushSteps(stepDown, stepsRed, count = 2);
+    pushSteps(stepLeft, stepsRed, count = 4);
+    pushSteps(stepDown, stepsRed, count = 4);
+    pushSteps(stepLeft, stepsRed, count = 2);
+    pushSteps(stepUp, stepsRed, count = 4);
+    pushSteps(stepLeft, stepsRed,count = 4);
+    pushSteps(stepUp, stepsRed, count = 2);
+    pushSteps(stepRight, stepsRed, count = 4);
+    pushSteps(stepUp, stepsRed, count = 4);
+    pushSteps(stepRight, stepsRed, count = 1);
+    pushSteps(stepDown, stepsRed, count = 5);
+
+    //Yellow tokens path
+
+    pushSteps(stepUp, stepsYellow, count = 4);
+    pushSteps(stepLeft, stepsYellow, count = 4);
+    pushSteps(stepUp, stepsYellow, count = 2);
+    pushSteps(stepRight, stepsYellow, count = 4);
+    pushSteps(stepUp, stepsYellow, count = 4);
+    pushSteps(stepRight, stepsYellow, count = 2);
+    pushSteps(stepDown, stepsYellow, count = 4);
+    pushSteps(stepRight, stepsYellow,count = 4);
+    pushSteps(stepDown, stepsYellow, count = 2);
+    pushSteps(stepLeft, stepsYellow, count = 4);
+    pushSteps(stepDown, stepsYellow, count = 4);
+    pushSteps(stepLeft, stepsYellow, count = 1);
+    pushSteps(stepUp, stepsYellow, count = 5);
+
+    //Blue tokens path
+    pushSteps(stepLeft, stepsBlue, count = 4);
+    pushSteps(stepDown, stepsBlue, count = 4);
+    pushSteps(stepLeft, stepsBlue, count = 2);
+    pushSteps(stepUp, stepsBlue, count = 4);
+    pushSteps(stepLeft, stepsBlue, count = 4);
+    pushSteps(stepUp, stepsBlue, count = 2);
+    pushSteps(stepRight, stepsBlue, count = 4);
+    pushSteps(stepUp, stepsBlue, count = 4);
+    pushSteps(stepRight, stepsBlue, count = 2);
+    pushSteps(stepDown, stepsBlue, count = 4);
+    pushSteps(stepRight, stepsBlue, count = 4);
+    pushSteps(stepDown, stepsBlue, count = 1);
+    pushSteps(stepLeft, stepsBlue, count = 5);
+
+    //Green tokens path
+    pushSteps(stepRight, stepsGreen, count = 4);
+    pushSteps(stepUp, stepsGreen, count = 4);
+    pushSteps(stepRight, stepsGreen, count = 2);
+    pushSteps(stepDown, stepsGreen, count = 4);
+    pushSteps(stepRight, stepsGreen, count = 4);
+    pushSteps(stepDown, stepsGreen, count = 2);
+    pushSteps(stepLeft, stepsGreen, count = 4);
+    pushSteps(stepDown, stepsGreen, count = 4);
+    pushSteps(stepLeft, stepsGreen, count = 2);
+    pushSteps(stepUp, stepsGreen, count = 4);
+    pushSteps(stepLeft, stepsGreen, count = 4);
+    pushSteps(stepUp, stepsGreen, count = 1);
+    pushSteps(stepRight, stepsGreen, count = 5);
     
     rolldice() {
         if (!clicked) {
@@ -72,7 +185,7 @@ class Game{
         }
     }
 
-    selectToken(colour, token){
+    selectTokenAndMove(colour, token){
         let text = document.getElementById('player');
         numOfToken = token;
         currColour = colour;
