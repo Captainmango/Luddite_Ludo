@@ -243,10 +243,10 @@ function randomMove(Color, paw) {
                                 doc.style.left = 672 + 'px';
                                 doc.style.top = 484 + "px";
                                 break;
-
+                                
                             case "green":
-                                doc.style.left = 515 + 'px';
-                                doc.style.top = 326 + "px";
+                                doc.style.left = 178 + 'px';
+                                doc.style.top = 385 + "px";
                                 break;
                         }
                         onboard[currpawn] = 1;

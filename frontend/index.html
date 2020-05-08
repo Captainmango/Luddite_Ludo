@@ -25,7 +25,7 @@
       <ul class="navbar-nav mr-auto">
         <!-- play a game button-->
         <li class="nav-item">
-          <button type="button" class="btn btn-large btn-success nav-link" id="playGameBtn" onclick="startGame()">Play a game</a>
+          <button type="button" class="btn btn-large btn-success nav-link disabled" id="playGameBtn" onclick="startGame()">Play a game</a>
         </li>
         <!-- review games dropdown-->
         <li class="nav-item dropdown">
@@ -108,21 +108,21 @@
   <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)">
     <h1 class="display-4" style="color: darkslategray;"><b>Welcome To Luddite Ludo</b></h1>
     <!-- Log in button group-->
-    <div id= "acc_btns" style="visibility: hidden;">
+    <div id= "acc_btns" style="visibility: '';">
       <button id="logInBtn" type="button" class="btn btn-success my-2 text-white" data-toggle="modal" data-target="#logInModal">Log in</button>
       <button id="signInBtn" type="button" class="btn btn-secondary my-2 text-white" data-toggle="modal" data-target="#signInModal">Sign up</button>
     </div>
 
     <!-- roll dice button group-->
-    <div id="dice_btns" style="visibility: hidden;">
-      <button type="button" id="diceBtn" class="btn btn-primary btn-outline-secondary text-white">Roll Dice</button>
+    <div id="dice_btns" style="visibility: '';">
+      <button type="button" id="diceBtn" class="btn btn-primary btn-outline-secondary text-white"onclick="randomNum()">Roll Dice</button>
     </div>
   </span>
 
 
-    <div id="main" style>
+    <div id="main" style="background-color: rgb(233, 235, 236);">
       
-      <div id="board">
+      <div id="board" style="background-color: rgb(233, 235, 236);">
         
   
       <!-- red pawns  start top:189px;left:476px-->
@@ -138,7 +138,7 @@
       <div class="pawns" id="yellowpawn4" onclick="randomMove('yellow',4)"     style="background-color:yellow;top:657px;left:250px;"></div>
   
       <!-- green pawns  start top:385px;left:178px-->
-      <div class="pawns" id="greenpawn1"  onclick="randomMove('greem',1)"    style="background-color:green;top:310px;left:250px;"></div>
+      <div class="pawns" id="greenpawn1"  onclick="randomMove('green',1)"    style="background-color:green;top:310px;left:250px;"></div>
       <div class="pawns" id="greenpawn2"  onclick="randomMove('green',2)"     style="background-color:green;top:215px;left:250px;"></div>
       <div class="pawns" id="greenpawn3"  onclick="randomMove('green',3)"      style="background-color:green;top:260px;left:203px;"></div>
       <div class="pawns" id="greenpawn4"   onclick="randomMove('green',4)"     style="background-color:green;top:260px;left:297px;"></div>
