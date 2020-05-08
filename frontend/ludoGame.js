@@ -12,6 +12,68 @@ class Game{
 
     }
 
+    isSharingSpace(){
+        let count = 0;
+        let toKill = "";
+        for (let i = 0; i < colours.length; i++) {
+            for (let n = 1; n <= 4; n++) {
+                let firstPawn = document.getElementById(colours[i] + "pawn" + n);
+                let secondPawn = document.getElementById(currentToken);
+                if (firstPawn.style.top == secondPawn.style.top && firstPawn.style.left == secondPawn.style.left && currentColour != colours[i] && currentPosition+num<44) {
+                count++;
+                toKill = colours[i] + "pawn" + n;
+                return toKill;
+            }
+        }
+    }
+    return false;
+    }
+
+    stuck(){
+        let text = document.getElementById('player');
+        if (onboard[currentToken] == 0 || currentPosition + num > 44) {
+            if (DontHaveOtherFree() || currPos + num > 44) {
+                let message = document.getElementById('message');
+                message.innerText = "You are stuck and cannot move";
+                clicked = false;
+                let dice = document.getElementById('dice');
+                dice.style.backgroundImage = "";
+                window.setTimeout(changePlayer(), 1000);
+            }
+        }
+    changePlayer() {
+        if (roll != 6){
+        let playerColour = document.getElementById('playerColour');
+        switch (playerColour.innerText) {
+            case "red": text.innerText = text.style.color = "blue"; break;
+            case "blue": text.innerText = text.style.color = "yellow"; break;
+            case "yellow": text.innerText = text.style.color = "green"; break;
+            case "green": text.innerText = text.style.color = "red"; break;
+        }
+        }
+        let message = document.getElementById('message');
+        message.innerText = "";
+        var dice = document.getElementById('dice');
+        dice.style.backgroundImage = "";
+    }
+
+    gameWon(){
+        //if token is in win zone end game with confirm to replay
+    }
+
+    gameStart(){
+        //start the game by rolling dice. Red always goes first.
+
+    }
+
+    static getLastGame(){
+        // the turns for the last game
+    }
+
+    static replayGame(){
+        // game using gameplay loop
+    }
+
     rollDice(){
         if (!clicked) {
             num = Math.floor((Math.random() * 6) + 1);
@@ -52,12 +114,12 @@ class Game{
 
                                 case "yellow":
                                     doc.style.left = 375 + 'px';
-                                    doc.style.top = 600 + "px";
+                                    doc.style.top = 680 + "px";
                                     break;
 
                                 case "blue":
-                                    doc.style.left = 516 + 'px';
-                                    doc.style.top = 325 + "px";
+                                    doc.style.left = 672 + 'px';
+                                    doc.style.top = 484 + "px";
                                     break;
 
                                 case "green":
@@ -129,26 +191,7 @@ class Game{
 
         }
 
-        gameWon(){
-            //if token is in win zone end game with confirm to replay
-        }
-
-        gameStart(){
-            //start the game by rolling dice. Red always goes first.
-
-        }
-
-        static getLastGame(){
-            // the turns for the last game
-        }
-
-        static replayGame(){
-            // game using gameplay loop
-        }
-
-
-
-    }
+}
 
     class Turn {
         constructor(colour, token, roll){
