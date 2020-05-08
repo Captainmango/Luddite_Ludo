@@ -105,7 +105,7 @@
 
 
 
-  <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)">
+  <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)"">
     <h1 class="display-4" style="color: darkslategray; display: 'none';"><b>Welcome To Luddite Ludo</b></h1>
     <!-- Log in button group-->
     <div id= "acc_btns" style="display: '';">
@@ -115,7 +115,7 @@
 
     <!-- roll dice button group-->
     <div id="dice_btns" style="display: '';">
-      <div style="background-image:url(Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;"></div>
+      <div style="background-image:url(../Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;"></div>
       <button type="button" class="btn btn-primary btn-outline-secondary text-white" onclick="Game.rollDice()">Roll Dice</button>
     </div>
     
@@ -130,12 +130,11 @@
       <button type="button" id="blue">Blue</button>
       <button type="button"  id="yellow">Yellow</button>-->
   
-      <div id="dice" onclick="randomNum()" style="background-image:url(Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;"></div>
       <!-- red pawns  start top 28 left 318-->
-      <div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"       style="background-color:red;top:149px;left:442px;"></div>
-      <div class="pawns" id="redpawn2"    onclick="randomMove('red',2)"       style="background-color:red;top:102px;left:395px;"></div>
-      <div class="pawns" id="redpawn3"    onclick="randomMove('red',3)"       style="background-color:red;top:55px;left:442px;"></div>
-      <div class="pawns" id="redpawn4"    onclick="randomMove('red',4)"       style="background-color:red;top:102px;left:490px;"></div>
+      <div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"       style="background-color:red;top:310px;left:600px;"></div>
+      <div class="pawns" id="redpawn2"    onclick="randomMove('red',2)"       style="background-color:red;top:260px;left:553px;"></div>
+      <div class="pawns" id="redpawn3"    onclick="randomMove('red',3)"       style="background-color:red;top:215px;left:600px;"></div>
+      <div class="pawns" id="redpawn4"    onclick="randomMove('red',4)"       style="background-color:red;top:260px;left:647px;"></div>
   
       <!-- yellow pawns  start top 523 left 218-->
       <div class="pawns" id="yellowpawn1" onclick="randomMove('yellow',1)"    style="background-color:yellow;top:451px;left:47px;"></div>
@@ -155,10 +154,8 @@
       <div class="pawns" id="bluepawn3"   onclick="randomMove('blue',3)"      style="background-color:blue;top:404px;left:442px;"></div>
       <div class="pawns" id="bluepawn4"   onclick="randomMove('blue',4)"      style="background-color:blue;top:498px;left:442px;"></div>
   
-  
-      <h4 id="uselesstext1">It`s </h4><h3 id="player" style="float:left; color:red">red</h3><h4 id="uselesstext2">s turn</h4>
-      <p id="badtext" style="float:left;"></p>
       </div>
+  
  
 
 

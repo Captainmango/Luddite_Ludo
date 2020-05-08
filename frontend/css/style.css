@@ -231,7 +231,7 @@
     position:absolute;
 }
 #board{
-    background:url(Images/board.gif) no-repeat;
+    background:url("../Images/board.gif") no-repeat;
     background-size:cover;
     width:650px;
     height:550px;
