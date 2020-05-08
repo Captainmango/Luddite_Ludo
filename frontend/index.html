@@ -25,7 +25,7 @@
       <ul class="navbar-nav mr-auto">
         <!-- play a game button-->
         <li class="nav-item">
-          <button type="button" class="btn btn-large btn-success nav-link disabled" id="playGameBtn">Play a game</a>
+          <button type="button" class="btn btn-large btn-success nav-link" id="playGameBtn" onclick="startGame()">Play a game</a>
         </li>
         <!-- review games dropdown-->
         <li class="nav-item dropdown">
@@ -43,7 +43,7 @@
     </div>
   </nav>
 
-  <body>
+  <body style="background-color:rgb(233, 235, 236)";>
 <!-- log in modal-->
 <div class="modal fade" id="logInModal" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -104,49 +104,55 @@
   </div>
 
 
-
-  <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)"">
-    <h1 class="display-4" style="color: darkslategray; display: 'none';"><b>Welcome To Luddite Ludo</b></h1>
+<span>
+  <div class="col-lg text-center" style="background-color:rgb(233, 235, 236)">
+    <h1 class="display-4" style="color: darkslategray;"><b>Welcome To Luddite Ludo</b></h1>
     <!-- Log in button group-->
-    <div id= "acc_btns" style="display: '';">
+    <div id= "acc_btns" style="display: 'none';">
       <button id="logInBtn" type="button" class="btn btn-success my-2 text-white" data-toggle="modal" data-target="#logInModal">Log in</button>
       <button id="signInBtn" type="button" class="btn btn-secondary my-2 text-white" data-toggle="modal" data-target="#signInModal">Sign up</button>
     </div>
 
     <!-- roll dice button group-->
     <div id="dice_btns" style="display: '';">
-      <div id="dice" style="background-image:url(../Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;"></div>
-      <button type="button" class="btn btn-primary btn-outline-secondary text-white" onclick="Game.rollDice()">Roll Dice</button>
+      <div id="dice" style="background-image:none;width:150px;height:150px; float:left;"></div>
+      <button type="button" id="diceBtn" class="btn btn-primary btn-outline-secondary text-white">Roll Dice</button>
     </div>
-    
+  </span>
+
+
     <div id="main">
-      <div id="board"></div>
+      
+      <div id="board">
   
       <!-- red pawns  start top:189px;left:476px-->
-      <div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"       style="background-color:red;top:310px;left:600px;"></div>
-      <div class="pawns" id="redpawn2"    onclick="randomMove('red',2)"       style="background-color:red;top:260px;left:553px;"></div>
-      <div class="pawns" id="redpawn3"    onclick="randomMove('red',3)"       style="background-color:red;top:215px;left:600px;"></div>
-      <div class="pawns" id="redpawn4"    onclick="randomMove('red',4)"       style="background-color:red;top:260px;left:647px;"></div>
+      <div class="pawns" id="redpawn1"           style="background-color:red;top:310px;left:600px;"></div>
+      <div class="pawns" id="redpawn2"           style="background-color:red;top:260px;left:553px;"></div>
+      <div class="pawns" id="redpawn3"          style="background-color:red;top:215px;left:600px;"></div>
+      <div class="pawns" id="redpawn4"           style="background-color:red;top:260px;left:647px;"></div>
   
       <!-- yellow pawns  start top:680px;left:375px-->
-      <div class="pawns" id="yellowpawn1" onclick="randomMove('yellow',1)"    style="background-color:yellow;top:609px;left:203px;"></div>
-      <div class="pawns" id="yellowpawn2" onclick="randomMove('yellow',2)"    style="background-color:yellow;top:609px;left:297px;"></div>
-      <div class="pawns" id="yellowpawn3" onclick="randomMove('yellow',3)"    style="background-color:yellow;top:563px;left:250px;"></div>
-      <div class="pawns" id="yellowpawn4" onclick="randomMove('yellow',4)"    style="background-color:yellow;top:657px;left:250px;"></div>
+      <div class="pawns" id="yellowpawn1"  style="background-color:yellow;top:609px;left:203px;"></div>
+      <div class="pawns" id="yellowpawn2"     style="background-color:yellow;top:609px;left:297px;"></div>
+      <div class="pawns" id="yellowpawn3"    style="background-color:yellow;top:563px;left:250px;"></div>
+      <div class="pawns" id="yellowpawn4"     style="background-color:yellow;top:657px;left:250px;"></div>
   
       <!-- green pawns  start top:385px;left:178px-->
-      <div class="pawns" id="greenpawn1"  onclick="randomMove('green',1)"     style="background-color:green;top:310px;left:250px;"></div>
-      <div class="pawns" id="greenpawn2"  onclick="randomMove('green',2)"     style="background-color:green;top:215px;left:250px;"></div>
-      <div class="pawns" id="greenpawn3"  onclick="randomMove('green',3)"     style="background-color:green;top:260px;left:203px;"></div>
-      <div class="pawns" id="greenpawn4"  onclick="randomMove('green',4)"     style="background-color:green;top:260px;left:297px;"></div>
+      <div class="pawns" id="greenpawn1"     style="background-color:green;top:310px;left:250px;"></div>
+      <div class="pawns" id="greenpawn2"      style="background-color:green;top:215px;left:250px;"></div>
+      <div class="pawns" id="greenpawn3"       style="background-color:green;top:260px;left:203px;"></div>
+      <div class="pawns" id="greenpawn4"       style="background-color:green;top:260px;left:297px;"></div>
   
       <!-- blue pawns  start top:484px;left:672px-->
-      <div class="pawns" id="bluepawn1"   onclick="randomMove('blue',1)"      style="background-color:blue;top:563px;left:600px;"></div>
-      <div class="pawns" id="bluepawn2"   onclick="randomMove('blue',2)"      style="background-color:blue;top:609px;left:553px;"></div>
-      <div class="pawns" id="bluepawn3"   onclick="randomMove('blue',3)"      style="background-color:blue;top:657px;left:600px;"></div>
-      <div class="pawns" id="bluepawn4"   onclick="randomMove('blue',4)"      style="background-color:blue;top:609px;left:647px;"></div>
+      <div class="pawns" id="bluepawn1"        style="background-color:blue;top:563px;left:600px;"></div>
+      <div class="pawns" id="bluepawn2"         style="background-color:blue;top:609px;left:553px;"></div>
+      <div class="pawns" id="bluepawn3"      style="background-color:blue;top:657px;left:600px;"></div>
+      <div class="pawns" id="bluepawn4"       style="background-color:blue;top:609px;left:647px;"></div>
   
       </div>
+    </div>
+
+    <div class="review"></div>
   
  
 
