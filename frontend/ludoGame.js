@@ -110,66 +110,71 @@ class Game{
         for (i = 0; i < count; i++) steps.push(value);
     }
     //Red tokens path
-    pushSteps(stepDown, stepsRed ,count = 4);
-    pushSteps(stepRight, stepsRed, count = 4);
-    pushSteps(stepDown, stepsRed, count = 2);
-    pushSteps(stepLeft, stepsRed, count = 4);
-    pushSteps(stepDown, stepsRed, count = 4);
-    pushSteps(stepLeft, stepsRed, count = 2);
-    pushSteps(stepUp, stepsRed, count = 4);
-    pushSteps(stepLeft, stepsRed,count = 4);
-    pushSteps(stepUp, stepsRed, count = 2);
-    pushSteps(stepRight, stepsRed, count = 4);
-    pushSteps(stepUp, stepsRed, count = 4);
-    pushSteps(stepRight, stepsRed, count = 1);
-    pushSteps(stepDown, stepsRed, count = 5);
+    makeRedRoute(){
+        pushSteps(stepDown, stepsRed, 4);
+        pushSteps(stepRight, stepsRed, 4);
+        pushSteps(stepDown, stepsRed, 2);
+        pushSteps(stepLeft, stepsRed, 4);
+        pushSteps(stepDown, stepsRed, 4);
+        pushSteps(stepLeft, stepsRed, 2);
+        pushSteps(stepUp, stepsRed, 4);
+        pushSteps(stepLeft, stepsRed, 4);
+        pushSteps(stepUp, stepsRed, 2);
+        pushSteps(stepRight, stepsRed, 4);
+        pushSteps(stepUp, stepsRed, 4);
+        pushSteps(stepRight, stepsRed, 1);
+        pushSteps(stepDown, stepsRed, 5);
+    }
 
     //Yellow tokens path
+    makeYellowRoute(){
+        pushSteps(stepUp, stepsYellow, 4);
+        pushSteps(stepLeft, stepsYellow, 4);
+        pushSteps(stepUp, stepsYellow, 2);
+        pushSteps(stepRight, stepsYellow, 4);
+        pushSteps(stepUp, stepsYellow, 4);
+        pushSteps(stepRight, stepsYellow, 2);
+        pushSteps(stepDown, stepsYellow, 4);
+        pushSteps(stepRight, stepsYellow, 4);
+        pushSteps(stepDown, stepsYellow, 2);
+        pushSteps(stepLeft, stepsYellow, 4);
+        pushSteps(stepDown, stepsYellow, 4);
+        pushSteps(stepLeft, stepsYellow, 1);
+        pushSteps(stepUp, stepsYellow, 5);
+    }
 
-    pushSteps(stepUp, stepsYellow, count = 4);
-    pushSteps(stepLeft, stepsYellow, count = 4);
-    pushSteps(stepUp, stepsYellow, count = 2);
-    pushSteps(stepRight, stepsYellow, count = 4);
-    pushSteps(stepUp, stepsYellow, count = 4);
-    pushSteps(stepRight, stepsYellow, count = 2);
-    pushSteps(stepDown, stepsYellow, count = 4);
-    pushSteps(stepRight, stepsYellow,count = 4);
-    pushSteps(stepDown, stepsYellow, count = 2);
-    pushSteps(stepLeft, stepsYellow, count = 4);
-    pushSteps(stepDown, stepsYellow, count = 4);
-    pushSteps(stepLeft, stepsYellow, count = 1);
-    pushSteps(stepUp, stepsYellow, count = 5);
-
-    //Blue tokens path
-    pushSteps(stepLeft, stepsBlue, count = 4);
-    pushSteps(stepDown, stepsBlue, count = 4);
-    pushSteps(stepLeft, stepsBlue, count = 2);
-    pushSteps(stepUp, stepsBlue, count = 4);
-    pushSteps(stepLeft, stepsBlue, count = 4);
-    pushSteps(stepUp, stepsBlue, count = 2);
-    pushSteps(stepRight, stepsBlue, count = 4);
-    pushSteps(stepUp, stepsBlue, count = 4);
-    pushSteps(stepRight, stepsBlue, count = 2);
-    pushSteps(stepDown, stepsBlue, count = 4);
-    pushSteps(stepRight, stepsBlue, count = 4);
-    pushSteps(stepDown, stepsBlue, count = 1);
-    pushSteps(stepLeft, stepsBlue, count = 5);
-
-    //Green tokens path
-    pushSteps(stepRight, stepsGreen, count = 4);
-    pushSteps(stepUp, stepsGreen, count = 4);
-    pushSteps(stepRight, stepsGreen, count = 2);
-    pushSteps(stepDown, stepsGreen, count = 4);
-    pushSteps(stepRight, stepsGreen, count = 4);
-    pushSteps(stepDown, stepsGreen, count = 2);
-    pushSteps(stepLeft, stepsGreen, count = 4);
-    pushSteps(stepDown, stepsGreen, count = 4);
-    pushSteps(stepLeft, stepsGreen, count = 2);
-    pushSteps(stepUp, stepsGreen, count = 4);
-    pushSteps(stepLeft, stepsGreen, count = 4);
-    pushSteps(stepUp, stepsGreen, count = 1);
-    pushSteps(stepRight, stepsGreen, count = 5);
-
+        //Blue tokens path
+    makeBlueRoute(){
+        pushSteps(stepLeft, stepsBlue, 4);
+        pushSteps(stepDown, stepsBlue, 4);
+        pushSteps(stepLeft, stepsBlue, 2);
+        pushSteps(stepUp, stepsBlue, 4);
+        pushSteps(stepLeft, stepsBlue, 4);
+        pushSteps(stepUp, stepsBlue, 2);
+        pushSteps(stepRight, stepsBlue, 4);
+        pushSteps(stepUp, stepsBlue, 4);
+        pushSteps(stepRight, stepsBlue, 2);
+        pushSteps(stepDown, stepsBlue, 4);
+        pushSteps(stepRight, stepsBlue, 4);
+        pushSteps(stepDown, stepsBlue, 1);
+        pushSteps(stepLeft, stepsBlue, 5);
+    }
+        //Green tokens path
+    makeGreenPaths(){
+        pushSteps(stepRight, stepsGreen, 4);
+        pushSteps(stepUp, stepsGreen, 4);
+        pushSteps(stepRight, stepsGreen, 2);
+        pushSteps(stepDown, stepsGreen, 4);
+        pushSteps(stepRight, stepsGreen, 4);
+        pushSteps(stepDown, stepsGreen, 2);
+        pushSteps(stepLeft, stepsGreen, 4);
+        pushSteps(stepDown, stepsGreen, 4);
+        pushSteps(stepLeft, stepsGreen, 2);
+        pushSteps(stepUp, stepsGreen, 4);
+        pushSteps(stepLeft, stepsGreen, 4);
+        pushSteps(stepUp, stepsGreen, 1);
+        pushSteps(stepRight, stepsGreen, 5);
+    }
     resetToken(victim) {
         onboard[victim] = 0;
         positions[victim] = 0;
