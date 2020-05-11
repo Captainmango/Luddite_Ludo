@@ -299,14 +299,15 @@ function randomMove(Color, paw) {
 
 
 class Game {
-    constructor(player){
+    constructor(player, id){
         this.player = player;
+        this.id = Number(sessionStorage.getItem('total_games'))+1;
     }
 }
 
 class Turn {
-    constructor(game, colour, pawn, roll){
-        this.game = game;
+    constructor(game_id, colour, pawn, roll){
+        this.game_id = game_id;
         this.colour = colour;
         this.pawn = pawn;
         this.roll = roll;

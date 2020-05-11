@@ -114,17 +114,17 @@
     </div>
 
     <!-- roll dice button group-->
-    <div id="dice_btns" style="visibility: '';">
-      <button type="button" id="diceBtn" class="btn btn-primary btn-outline-secondary text-white"onclick="randomNum()">Roll Dice</button>
+    <div id="dice_btns" style="visibility: hidden;">
+      <button type="button" id="diceBtn" class="btn btn-primary btn-outline-secondary text-white" onclick="randomNum()">Roll Dice</button>
     </div>
   </span>
 
 
-    <div id="main" style="background-color: rgb(233, 235, 236);">
+    <div id="main" style="background-color: rgb(233, 235, 236);display: none">
       
       <div id="board" style="background-color: rgb(233, 235, 236);">
         
-  
+  <div style="display: none;">
       <!-- red pawns  start top:189px;left:476px-->
       <div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"        style="background-color:red;top:310px;left:600px;display:;"></div>
       <div class="pawns" id="redpawn2"    onclick="randomMove('red',2)"        style="background-color:red;top:260px;left:553px;"></div>
@@ -148,11 +148,11 @@
       <div class="pawns" id="bluepawn2"   onclick="randomMove('blue',2)"       style="background-color:blue;top:609px;left:553px;"></div>
       <div class="pawns" id="bluepawn3"   onclick="randomMove('blue',3)"    style="background-color:blue;top:657px;left:600px;"></div>
       <div class="pawns" id="bluepawn4"   onclick="randomMove('blue',4)"     style="background-color:blue;top:609px;left:647px;"></div>
-  
+    </div>
       </div>
     </div>
-    <div id="dice" onclick="randomNum()" style="background-image:url(Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;"></div>
-    <div class="container">
+    <div id="dice" onclick="randomNum()" style="background-image:url(Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;display: none;"></div>
+    <div class="container" style="display:none;">
     <h4 id="uselesstext1">It`s </h4><h3 id="player" style="float:left; color:red">red</h3><h4 class="text-left" id="uselesstext2">'s turn</h4>
     <p id="badtext" style="float:left;"></p>
   </div>
