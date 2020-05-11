@@ -26,6 +26,11 @@ var logOutBtn = document.getElementById('logoutBtn');
 var dropDownMenu = document.getElementById('navbarDropdown');
 var playGameBtn = document.getElementById('playGameBtn');
 var accBtns = document.getElementById('acc_btns');
+var diceBtns = document.getElementById('dice_btns');
+var tokens = document.getElementById('tokens');
+var board = document.getElementById('main');
+var game_msg = document.getElementById('game_msg');
+var dice = document.getElementById('dice');
 
 
 
@@ -34,6 +39,7 @@ signInBtn.addEventListener('click', signUp);
 logInBtn.addEventListener('click', getLogIn);
 logInToAcc.addEventListener('click', logIn);
 logOutBtn.addEventListener('click', logout);
+playGameBtn.addEventListener('click', play_a_game);
 
 
 function getSignIn() {
@@ -72,17 +78,30 @@ function update_page(){
     if(is_logged_in()){
         dropDownMenu.classList.remove('disabled');
         playGameBtn.classList.remove('disabled');
-        accBtns.style.display = "none";
-        playArea.style.display = "";
+        accBtns.style.visibility = "hidden";
+
+
     } else {
         dropDownMenu.classList.add('disabled')
         playGameBtn.classList.add('disabled');
-        accBtns.style.display = "";
-        playArea.style.display = "none";
+        accBtns.style.visibility = "";
 
     }
 }
 
+function play_a_game(){
+    let game = new Game(current_user);
+    if(current_user){
+        game.player = current_user();
+        board.style.display = '';
+        tokens.style.display = '';
+        game_msg.style.display = '';
+        diceBtns.style.visibility ='';
+        dice.style.display = ''
+        playGameBtn.classList.add('disabled');
+    }
+    return game
+}
 
 
 function signUp(){

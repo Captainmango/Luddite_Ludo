@@ -229,13 +229,13 @@ function randomMove(Color, paw) {
                         let doc = document.getElementById(currpawn);
                         switch (Color) {
                             case "red":
-                                doc.style.left = 476 + 'px';
+                                doc.style.left = 474 + 'px';
                                 doc.style.top = 189 + "px";
                                 break;
 
                             case "yellow":
                                 doc.style.left = 375 + 'px';
-                                doc.style.top = 680 + "px";
+                                doc.style.top = 682 + "px";
                                 break;
 
                             case "blue":
