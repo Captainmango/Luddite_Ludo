@@ -14,7 +14,7 @@ function HaveHover() {
         for (let n = 1; n <= 4; n++) {
             let firstPawn = document.getElementById(colours[i] + "pawn" + n);
             let secondPawn = document.getElementById(currpawn);
-            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolor!=colours[i]&&currPos+num<44) {
+            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolor!=colours[i]&&currPos+roll<44) {
                 count++;
                 toKill = colours[i] + "pawn" + n;
                 return toKill;
@@ -25,8 +25,8 @@ function HaveHover() {
 }
 function Stuck() {
     let text = document.getElementById('player');
-    if (onboard[currpawn] == 0||currPos+num>44) {
-        if (DontHaveOtherFree()||currPos+num>44) {
+    if (onboard[currpawn] == 0||currPos+roll>44) {
+        if (DontHaveOtherFree()||currPos+roll>44) {
             let badtext = document.getElementById('badtext');
             badtext.innerText = "Unfortunatlly you stuck";
             clicked = false;
@@ -37,7 +37,7 @@ function Stuck() {
     }
 }
 function changePlayer() {
-    if (num != 6){
+    if (roll != 6){
     let text = document.getElementById('player');
     switch (text.innerText) {
         case "red": text.innerText = text.style.color = "blue"; break;
@@ -66,7 +66,7 @@ let onboard = {
 function DontHaveOtherFree() {
     let text = document.getElementById('player');
     for (let i = 1; i <=4; i++) {
-        if (onboard[text.innerText + "pawn" + i] == 1 || positions[text.innerText + "pawn" + i]+num>=44) return false;
+        if (onboard[text.innerText + "pawn" + i] == 1 || positions[text.innerText + "pawn" + i]+roll>=44) return false;
     }
     return true;
 }
@@ -199,12 +199,12 @@ function ResetPawn(victim) {
 }
 function randomNum() {
     if (!clicked) {
-        num = Math.floor((Math.random() * 6) + 1);;
+        roll = Math.floor((Math.random() * 6) + 1);;
         let dice = document.getElementById('dice');
-        dice.style.backgroundImage = "url(Images/" + num + ".jpg)";
+        dice.style.backgroundImage = "url(Images/" + roll + ".jpg)";
         clicked = true;
     }
-    if (num != 6&&DontHaveOtherFree()) {
+    if (roll != 6&&DontHaveOtherFree()) {
         let bad = document.getElementById('badtext');
         bad.innerText = "Unfortunatlly you stuck";
         window.setTimeout(changePlayer, 1000);
@@ -217,14 +217,14 @@ function randomMove(Color, paw) {
     currcolor = Color;
     currpawn = currcolor + "pawn" + numOfPawnn;
     currPos = positions[currpawn];
-    if (num + currPos > 44) {
+    if (roll + currPos > 44) {
         Stuck();
     }
     else {
         if (clicked) {
             let position = currPos;
             if (text.innerText == currcolor) {
-                if (onboard[currpawn] === 1 || num === 6) {
+                if (onboard[currpawn] === 1 || roll === 6) {
                     if (onboard[currpawn] === 0) {
                         let doc = document.getElementById(currpawn);
                         switch (Color) {
@@ -253,25 +253,25 @@ function randomMove(Color, paw) {
                     else {
                         switch (Color) {
                             case "red":
-                                for (i = currPos; i < position + num; i++) {
+                                for (i = currPos; i < position + roll; i++) {
                                     stepsRed[i]();
                                 }
                                 break;
 
                             case "yellow":
-                                for (i = currPos; i < position + num; i++) {
+                                for (i = currPos; i < position + roll; i++) {
                                     stepsYellow[i]();
                                 }
                                 break;
 
                             case "blue":
-                                for (i = currPos; i < position + num; i++) {
+                                for (i = currPos; i < position + roll; i++) {
                                     stepsBlue[i]();
                                 }
                                 break;
 
                             case "green":
-                                for (i = currPos; i < position + num; i++) {
+                                for (i = currPos; i < position + roll; i++) {
                                     stepsGreen[i]();
                                 }
                                 break;
@@ -285,7 +285,7 @@ function randomMove(Color, paw) {
                         CheckForWinner();
                         changePlayer();
                     }
-                    num = 0;
+                    roll = 0;
                     clicked = false;
                     let dice = document.getElementById('dice');
                     dice.style.backgroundImage = "url(Images/dice.gif)";
@@ -295,6 +295,7 @@ function randomMove(Color, paw) {
         }
     }
 }
+
 
 
 class Game {
