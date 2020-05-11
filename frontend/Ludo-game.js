@@ -1,22 +1,22 @@
-﻿var currPos = 44;
-var step = 49.5;
-var currcolor = "";
-var NumOfPaw = "";
-var num = 0;
-var clicked = false;
-var currpawn = "";
-var allcolor = ["red", "blue", "green", "yellow"];
-var pawnOut = {red:0,blue:0,green:0,yellow:0}
+﻿let currPos = 44;
+let step = 49.5;
+let currcolour = "";
+let numOfPawn = "";
+let roll = 0;
+let clicked = false;
+let currpawn = "";
+let colours = ["red", "blue", "green", "yellow"];
+let pawnOut = {red:0,blue:0,green:0,yellow:0}
 function HaveHover() {
-    var count = 0;
-    var toKill = "";
-    for (var i = 0; i < allcolor.length; i++) {
-        for (var n = 1; n <= 4; n++) {
-            var firstPawn = document.getElementById(allcolor[i] + "pawn" + n);
-            var secondPawn=document.getElementById(currpawn);
-            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolor!=allcolor[i]&&currPos+num<44) {
+    let count = 0;
+    let toKill = "";
+    for (let i = 0; i < colours.length; i++) {
+        for (let n = 1; n <= 4; n++) {
+            let firstPawn = document.getElementById(colours[i] + "pawn" + n);
+            let secondPawn = document.getElementById(currpawn);
+            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolor!=colours[i]&&currPos+num<44) {
                 count++;
-                toKill = allcolor[i] + "pawn" + n;
+                toKill = colours[i] + "pawn" + n;
                 return toKill;
             }
         }
@@ -24,13 +24,13 @@ function HaveHover() {
     return false;
 }
 function Stuck() {
-    var text = document.getElementById('player');
+    let text = document.getElementById('player');
     if (onboard[currpawn] == 0||currPos+num>44) {
         if (DontHaveOtherFree()||currPos+num>44) {
-            var badtext = document.getElementById('badtext');
+            let badtext = document.getElementById('badtext');
             badtext.innerText = "Unfortunatlly you stuck";
             clicked = false;
-            var dice = document.getElementById('dice');
+            let dice = document.getElementById('dice');
             dice.style.backgroundImage = "url(Images/dice.gif)";
             window.setTimeout(changePlayer, 1000);
         }
@@ -38,7 +38,7 @@ function Stuck() {
 }
 function changePlayer() {
     if (num != 6){
-    var text = document.getElementById('player');
+    let text = document.getElementById('player');
     switch (text.innerText) {
         case "red": text.innerText = text.style.color = "blue"; break;
         case "blue": text.innerText = text.style.color = "yellow"; break;
@@ -46,36 +46,36 @@ function changePlayer() {
         case "green": text.innerText = text.style.color = "red"; break;
     }
     }
-    var badtext = document.getElementById('badtext');
+    let badtext = document.getElementById('badtext');
     badtext.innerText = "";
-    var dice = document.getElementById('dice');
+    let dice = document.getElementById('dice');
     dice.style.backgroundImage = "url(Images/dice.gif)";
 }
-var positions = {
+let positions = {
     redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
     bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
     greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
     yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
 };
-var onboard = {
+let onboard = {
     redpawn1: 0, redpawn2: 0, redpawn3: 0, redpawn4: 0,
     bluepawn1: 0, bluepawn2: 0, bluepawn3: 0, bluepawn4: 0,
     greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
     yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
 };
 function DontHaveOtherFree() {
-    var text = document.getElementById('player');
-    for (var i = 1; i <=4; i++) {
+    let text = document.getElementById('player');
+    for (let i = 1; i <=4; i++) {
         if (onboard[text.innerText + "pawn" + i] == 1 || positions[text.innerText + "pawn" + i]+num>=44) return false;
     }
     return true;
 }
 function CheckForWinner() {
     if (pawnOut[currcolor] == 4) {
-        var dice = document.getElementById("dice");
-        var player = document.getElementById("player");
-        var uselesstext1 = document.getElementById("uselesstext1");
-        var uselesstext2 = document.getElementById("uselesstext2");
+        let dice = document.getElementById("dice");
+        let player = document.getElementById("player");
+        let uselesstext1 = document.getElementById("uselesstext1");
+        let uselesstext2 = document.getElementById("uselesstext2");
         dice.innerText = "";
         dice.style.visibility = "hidden";
         uselesstext1.innerText = "";
@@ -84,38 +84,38 @@ function CheckForWinner() {
     }
 }
 function stepDown() {
-    var doc = document.getElementById(currcolor + "pawn"+NumOfPaw);
-    var curr = Number(doc.style.top.replace(/[a-z]/g, ''));
-    doc.style.top = (curr+step)+'px';
+    let doc = document.getElementById(currcolor + "pawn"+numOfPawnn);
+    let space = Number(doc.style.top.replace(/[a-z]/g, ''));
+    doc.style.top = (space+step)+'px';
     currPos++;
 }
 function stepUp() {
-    var doc = document.getElementById(currpawn);
-    var curr = Number(doc.style.top.replace(/[a-z]/g, ''));
-    doc.style.top = (curr - step) + 'px';
+    let doc = document.getElementById(currpawn);
+    let space = Number(doc.style.top.replace(/[a-z]/g, ''));
+    doc.style.top = (space - step) + 'px';
     currPos++;
 }
 function stepLeft() {
-    var doc = document.getElementById(currpawn);
-    var curr = Number(doc.style.left.replace(/[a-z]/g, ''));
-    doc.style.left = (curr - step) + 'px';
+    let doc = document.getElementById(currpawn);
+    let space = Number(doc.style.left.replace(/[a-z]/g, ''));
+    doc.style.left = (space - step) + 'px';
     currPos++;
 }
 function stepRight() {
-    var doc = document.getElementById(currpawn);
-    var curr = Number(doc.style.left.replace(/[a-z]/g, ''));
-    doc.style.left = (curr + step) + 'px';
+    let doc = document.getElementById(currpawn);
+    let space = Number(doc.style.left.replace(/[a-z]/g, ''));
+    doc.style.left = (space + step) + 'px';
     currPos++;
 }
-var stepsRed = [];
-var stepsYellow = [];
-var stepsBlue =[];
-var stepsGreen =[];
+let stepsRed = [];
+let stepsYellow = [];
+let stepsBlue = [];
+let stepsGreen = [];
 function pushSteps(value, steps, count) {
     for (i = 0; i < count; i++) steps.push(value);
 }
 //Red pawns path
-pushSteps(stepDown,stepsRed,4);
+pushSteps(stepDown, stepsRed,4);
 pushSteps(stepRight, stepsRed,4);
 pushSteps(stepDown, stepsRed,2);
 pushSteps(stepLeft, stepsRed,4);
@@ -148,7 +148,7 @@ pushSteps(stepUp, stepsYellow,5);
 pushSteps(stepLeft, stepsBlue,4);
 pushSteps(stepDown, stepsBlue,4);
 pushSteps(stepLeft, stepsBlue,2);
-pushSteps(stepUp, stepsBlue,4,2);
+pushSteps(stepUp, stepsBlue, 4);
 pushSteps(stepLeft, stepsBlue,4);
 pushSteps(stepUp, stepsBlue,2);
 pushSteps(stepRight, stepsBlue,4);
@@ -176,7 +176,7 @@ pushSteps(stepRight, stepsGreen, 5);
 function ResetPawn(victim) {
     onboard[victim] = 0;
     positions[victim] = 0;
-    var pawnToMove = document.getElementById(victim);
+    let pawnToMove = document.getElementById(victim);
     switch (victim) {
         case "redpawn1": pawnToMove.style.top = 310 + "px"; pawnToMove.style.left = 660 + "px"; break;
         case "redpawn2": pawnToMove.style.top = 260 + "px"; pawnToMove.style.left = 553 + "px"; break;
@@ -200,34 +200,33 @@ function ResetPawn(victim) {
 function randomNum() {
     if (!clicked) {
         num = Math.floor((Math.random() * 6) + 1);;
-        var dice = document.getElementById('dice');
+        let dice = document.getElementById('dice');
         dice.style.backgroundImage = "url(Images/" + num + ".jpg)";
         clicked = true;
     }
     if (num != 6&&DontHaveOtherFree()) {
-        var bad = document.getElementById('badtext');
+        let bad = document.getElementById('badtext');
         bad.innerText = "Unfortunatlly you stuck";
         window.setTimeout(changePlayer, 1000);
         clicked = false;
     }
 }
 function randomMove(Color, paw) {
-    var text = document.getElementById('player');
-    NumOfPaw = paw;
+    let text = document.getElementById('player');
+    numOfPawnn = paw;
     currcolor = Color;
-    currpawn = currcolor + "pawn" + NumOfPaw;
+    currpawn = currcolor + "pawn" + numOfPawnn;
     currPos = positions[currpawn];
     if (num + currPos > 44) {
         Stuck();
     }
     else {
         if (clicked) {
-            var position = currPos;
+            let position = currPos;
             if (text.innerText == currcolor) {
                 if (onboard[currpawn] === 1 || num === 6) {
                     if (onboard[currpawn] === 0) {
-                        var doc = document.getElementById(currpawn);
-                        var curr = Number(doc.style.left.replace(/[a-z]/g, ''));
+                        let doc = document.getElementById(currpawn);
                         switch (Color) {
                             case "red":
                                 doc.style.left = 476 + 'px';
@@ -278,7 +277,7 @@ function randomMove(Color, paw) {
                                 break;
                         }
                         positions[currpawn] = currPos;
-                        var victim = HaveHover();
+                        let victim = HaveHover();
                         if (victim != false) {
                             ResetPawn(victim);
                         }
@@ -288,11 +287,27 @@ function randomMove(Color, paw) {
                     }
                     num = 0;
                     clicked = false;
-                    var dice = document.getElementById('dice');
+                    let dice = document.getElementById('dice');
                     dice.style.backgroundImage = "url(Images/dice.gif)";
                 }
                 else Stuck();
             }
         }
+    }
+}
+
+
+class Game {
+    constructor(player){
+        this.player = player;
+    }
+}
+
+class Turn {
+    constructor(game, colour, pawn, roll){
+        this.game = game;
+        this.colour = colour;
+        this.pawn = pawn;
+        this.roll = roll;
     }
 }
