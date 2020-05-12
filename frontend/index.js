@@ -103,6 +103,7 @@ function play_a_game(){
         dice.style.display = ''
         playGameBtn.classList.add('disabled');
         title.style.visibility = "hidden";
+        createGame();
         
     }
 
@@ -173,6 +174,8 @@ function logIn(){
         })}
 
 function createGame(){
+    let formData = {};
+    formData["user_id"] = current_user();
     let confObj = {
         method: "POST",
         mode: "cors",
@@ -184,7 +187,18 @@ function createGame(){
         }
     let req_url = base_url + "games";
 
-}
+    fetch(req_url, confObj).then((req)=>
+        req.json()).then(response => { 
+            if(response.game_id){
+            sessionStorage["game"] = response;
+            } else {
+                sessionStorage.removeItem("game");
+            }
+            
+        })}
+
+
+
 
 
 

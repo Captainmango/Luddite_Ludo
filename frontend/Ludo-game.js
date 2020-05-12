@@ -14,7 +14,6 @@ function haveHover() {
         for (let n = 1; n <= 4; n++) {
             let firstPawn = document.getElementById(colours[i] + "pawn" + n);
             let secondPawn = document.getElementById(currPawn);
-            console.log(`${i} ${n}`);
             if (firstPawn.style.top == secondPawn.style.top && firstPawn.style.left == secondPawn.style.left && currColour != colours[i] && currPos+roll<44) {
             count++;
             toKill = colours[i] + "pawn" + n;
