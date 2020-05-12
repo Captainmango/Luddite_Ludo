@@ -32,6 +32,7 @@ var board = document.getElementById('main');
 var game_msg = document.getElementById('game_msg');
 var dice = document.getElementById('dice');
 var welcome = document.getElementById('welcome_msg');
+var title = document.getElementById('title');
 
 
 
@@ -80,8 +81,7 @@ function update_page(){
         dropDownMenu.classList.remove('disabled');
         playGameBtn.classList.remove('disabled');
         accBtns.style.visibility = "hidden";
-        welcome.style.display = "hidden";
-
+        welcome.style.display = "none";
 
     } else {
         dropDownMenu.classList.add('disabled')
@@ -102,6 +102,7 @@ function play_a_game(){
         diceBtns.style.visibility ='';
         dice.style.display = ''
         playGameBtn.classList.add('disabled');
+        title.style.visibility = "hidden";
         return game
     }
     return game

@@ -1,10 +1,10 @@
 ﻿let currPos = 44;
 let step = 49.5;
-let currcolour = "";
+let currColour = "";
 let numOfPawn = "";
 let roll = 0;
 let clicked = false;
-let currpawn = "";
+let currPawn = "";
 let colours = ["red", "blue", "green", "yellow"];
 let pawnOut = {red:0,blue:0,green:0,yellow:0}
 function haveHover() {
@@ -13,19 +13,21 @@ function haveHover() {
     for (let i = 0; i < colours.length; i++) {
         for (let n = 1; n <= 4; n++) {
             let firstPawn = document.getElementById(colours[i] + "pawn" + n);
-            let secondPawn = document.getElementById(currpawn);
-            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolour!=colours[i]&&currPos+roll<44) {
-                count++;
-                toKill = colours[i] + "pawn" + n;
-                return toKill;
-            }
+            let secondPawn = document.getElementById(currPawn);
+            console.log(`${i} ${n}`);
+            if (firstPawn.style.top == secondPawn.style.top && firstPawn.style.left == secondPawn.style.left && currColour != colours[i] && currPos+roll<44) {
+            count++;
+            toKill = colours[i] + "pawn" + n;
+            return toKill;
         }
     }
-    return false;
 }
+return false;
+}
+
 function stuck() {
     let text = document.getElementById('player');
-    if (onboard[currpawn] == 0||currPos+roll>44) {
+    if (onboard[currPawn] == 0||currPos+roll>44) {
         if (dontHaveOtherFree()||currPos+roll>44) {
             let badtext = document.getElementById('badtext');
             badtext.innerText = "Unfortunately you're stuck :(";
@@ -71,7 +73,7 @@ function dontHaveOtherFree() {
     return true;
 }
 function checkForWinner() {
-    if (pawnOut[currcolour] == 4) {
+    if (pawnOut[currColour] == 4) {
         let dice = document.getElementById("dice");
         let player = document.getElementById("player");
         let uselesstext1 = document.getElementById("uselesstext1");
@@ -80,29 +82,29 @@ function checkForWinner() {
         dice.style.visibility = "hidden";
         uselesstext1.innerText = "";
         uselesstext2.innerText = "";
-        player.innerText = "The Winner is the "+currcolour+" player";
+        player.innerText = "The Winner is the "+currColour+" player";
     }
 }
 function stepDown() {
-    let doc = document.getElementById(currpawn);
+    let doc = document.getElementById(currPawn);
     let space = Number(doc.style.top.replace(/[a-z]/g, ''));
     doc.style.top = (space+step)+'px';
     currPos++;
 }
 function stepUp() {
-    let doc = document.getElementById(currpawn);
+    let doc = document.getElementById(currPawn);
     let space = Number(doc.style.top.replace(/[a-z]/g, ''));
     doc.style.top = (space - step) + 'px';
     currPos++;
 }
 function stepLeft() {
-    let doc = document.getElementById(currpawn);
+    let doc = document.getElementById(currPawn);
     let space = Number(doc.style.left.replace(/[a-z]/g, ''));
     doc.style.left = (space - step) + 'px';
     currPos++;
 }
 function stepRight() {
-    let doc = document.getElementById(currpawn);
+    let doc = document.getElementById(currPawn);
     let space = Number(doc.style.left.replace(/[a-z]/g, ''));
     doc.style.left = (space + step) + 'px';
     currPos++;
@@ -213,20 +215,20 @@ function randomNum() {
 }
 function randomMove(colour, pawn) {
     let text = document.getElementById('player');
-    numOfPawnn = pawn;
-    currcolour = colour;
-    currpawn = currcolour + "pawn" + numOfPawn;
-    currPos = positions[currpawn];
+    numOfPawn = pawn;
+    currColour = colour;
+    currPawn = currColour + "pawn" + numOfPawn;
+    currPos = positions[currPawn];
     if (roll + currPos > 44) {
         stuck();
     }
     else {
         if (clicked) {
             let position = currPos;
-            if (text.innerText == currcolour) {
-                if (onboard[currpawn] === 1 || roll === 6) {
-                    if (onboard[currpawn] === 0) {
-                        let doc = document.getElementById(currpawn);
+            if (text.innerText == currColour) {
+                if (onboard[currPawn] === 1 || roll === 6) {
+                    if (onboard[currPawn] === 0) {
+                        let doc = document.getElementById(currPawn);
                         switch (colour) {
                             case "red":
                                 doc.style.left = 474 + 'px';
@@ -248,7 +250,7 @@ function randomMove(colour, pawn) {
                                 doc.style.top = 385 + "px";
                                 break;
                         }
-                        onboard[currpawn] = 1;
+                        onboard[currPawn] = 1;
                     }
                     else {
                         switch (colour) {
@@ -276,12 +278,12 @@ function randomMove(colour, pawn) {
                                 }
                                 break;
                         }
-                        positions[currpawn] = currPos;
+                        positions[currPawn] = currPos;
                         let victim = haveHover();
                         if (victim != false) {
                             ResetPawn(victim);
                         }
-                        if (currPos == 44) { pawnOut[currcolour]++; onboard[currpawn] = 0; positions[currpawn] = 0; document.getElementById(currpawn).style.visibility = "hidden"; };
+                        if (currPos == 44) { pawnOut[currColour]++; onboard[currPawn] = 0; positions[currPawn] = 0; document.getElementById(currPawn).style.visibility = "hidden"; };
                         checkForWinner();
                         changePlayer();
                     }
