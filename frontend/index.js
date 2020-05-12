@@ -103,9 +103,9 @@ function play_a_game(){
         dice.style.display = ''
         playGameBtn.classList.add('disabled');
         title.style.visibility = "hidden";
-        return game
+        
     }
-    return game
+
 }
 
 
@@ -171,6 +171,20 @@ function logIn(){
                 sessionStorage.setItem('current_user', response.user_id);
                 $("#logInModal").on('hidden.bs.modal' , update_page());}  
         })}
+
+function createGame(){
+    let confObj = {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        }
+    let req_url = base_url + "games";
+
+}
 
 
 

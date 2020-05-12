@@ -303,7 +303,7 @@ function randomMove(colour, pawn) {
 class Game {
     constructor(player, id){
         this.player = player;
-        this.id = Number(sessionStorage.getItem('game_id'));
+        this.id = id;
     }
 }
 
