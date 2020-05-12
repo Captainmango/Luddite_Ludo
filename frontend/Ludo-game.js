@@ -7,14 +7,14 @@ let clicked = false;
 let currpawn = "";
 let colours = ["red", "blue", "green", "yellow"];
 let pawnOut = {red:0,blue:0,green:0,yellow:0}
-function HaveHover() {
+function haveHover() {
     let count = 0;
     let toKill = "";
     for (let i = 0; i < colours.length; i++) {
         for (let n = 1; n <= 4; n++) {
             let firstPawn = document.getElementById(colours[i] + "pawn" + n);
             let secondPawn = document.getElementById(currpawn);
-            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolor!=colours[i]&&currPos+roll<44) {
+            if (firstPawn.style.top==secondPawn.style.top&&firstPawn.style.left==secondPawn.style.left&&currcolour!=colours[i]&&currPos+roll<44) {
                 count++;
                 toKill = colours[i] + "pawn" + n;
                 return toKill;
@@ -23,12 +23,12 @@ function HaveHover() {
     }
     return false;
 }
-function Stuck() {
+function stuck() {
     let text = document.getElementById('player');
     if (onboard[currpawn] == 0||currPos+roll>44) {
-        if (DontHaveOtherFree()||currPos+roll>44) {
+        if (dontHaveOtherFree()||currPos+roll>44) {
             let badtext = document.getElementById('badtext');
-            badtext.innerText = "Unfortunatlly you stuck";
+            badtext.innerText = "Unfortunately you're stuck :(";
             clicked = false;
             let dice = document.getElementById('dice');
             dice.style.backgroundImage = "url(Images/dice.gif)";
@@ -63,15 +63,15 @@ let onboard = {
     greenpawn1: 0, greenpawn2: 0, greenpawn3: 0, greenpawn4: 0,
     yellowpawn1: 0, yellowpawn2: 0, yellowpawn3: 0, yellowpawn4: 0
 };
-function DontHaveOtherFree() {
+function dontHaveOtherFree() {
     let text = document.getElementById('player');
     for (let i = 1; i <=4; i++) {
         if (onboard[text.innerText + "pawn" + i] == 1 || positions[text.innerText + "pawn" + i]+roll>=44) return false;
     }
     return true;
 }
-function CheckForWinner() {
-    if (pawnOut[currcolor] == 4) {
+function checkForWinner() {
+    if (pawnOut[currcolour] == 4) {
         let dice = document.getElementById("dice");
         let player = document.getElementById("player");
         let uselesstext1 = document.getElementById("uselesstext1");
@@ -80,11 +80,11 @@ function CheckForWinner() {
         dice.style.visibility = "hidden";
         uselesstext1.innerText = "";
         uselesstext2.innerText = "";
-        player.innerText = "The Winner is the "+currcolor+" player";
+        player.innerText = "The Winner is the "+currcolour+" player";
     }
 }
 function stepDown() {
-    let doc = document.getElementById(currcolor + "pawn"+numOfPawnn);
+    let doc = document.getElementById(currpawn);
     let space = Number(doc.style.top.replace(/[a-z]/g, ''));
     doc.style.top = (space+step)+'px';
     currPos++;
@@ -204,30 +204,30 @@ function randomNum() {
         dice.style.backgroundImage = "url(Images/" + roll + ".jpg)";
         clicked = true;
     }
-    if (roll != 6&&DontHaveOtherFree()) {
+    if (roll != 6 && dontHaveOtherFree()) {
         let bad = document.getElementById('badtext');
-        bad.innerText = "Unfortunatlly you stuck";
+        bad.innerText = "Unfortunately you're stuck :(";
         window.setTimeout(changePlayer, 1000);
         clicked = false;
     }
 }
-function randomMove(Color, paw) {
+function randomMove(colour, pawn) {
     let text = document.getElementById('player');
-    numOfPawnn = paw;
-    currcolor = Color;
-    currpawn = currcolor + "pawn" + numOfPawnn;
+    numOfPawnn = pawn;
+    currcolour = colour;
+    currpawn = currcolour + "pawn" + numOfPawn;
     currPos = positions[currpawn];
     if (roll + currPos > 44) {
-        Stuck();
+        stuck();
     }
     else {
         if (clicked) {
             let position = currPos;
-            if (text.innerText == currcolor) {
+            if (text.innerText == currcolour) {
                 if (onboard[currpawn] === 1 || roll === 6) {
                     if (onboard[currpawn] === 0) {
                         let doc = document.getElementById(currpawn);
-                        switch (Color) {
+                        switch (colour) {
                             case "red":
                                 doc.style.left = 474 + 'px';
                                 doc.style.top = 189 + "px";
@@ -251,7 +251,7 @@ function randomMove(Color, paw) {
                         onboard[currpawn] = 1;
                     }
                     else {
-                        switch (Color) {
+                        switch (colour) {
                             case "red":
                                 for (i = currPos; i < position + roll; i++) {
                                     stepsRed[i]();
@@ -277,12 +277,12 @@ function randomMove(Color, paw) {
                                 break;
                         }
                         positions[currpawn] = currPos;
-                        let victim = HaveHover();
+                        let victim = haveHover();
                         if (victim != false) {
                             ResetPawn(victim);
                         }
-                        if (currPos == 44) { pawnOut[currcolor]++; onboard[currpawn] = 0; positions[currpawn] = 0; document.getElementById(currpawn).style.visibility = "hidden"; };
-                        CheckForWinner();
+                        if (currPos == 44) { pawnOut[currcolour]++; onboard[currpawn] = 0; positions[currpawn] = 0; document.getElementById(currpawn).style.visibility = "hidden"; };
+                        checkForWinner();
                         changePlayer();
                     }
                     roll = 0;
@@ -290,7 +290,7 @@ function randomMove(Color, paw) {
                     let dice = document.getElementById('dice');
                     dice.style.backgroundImage = "url(Images/dice.gif)";
                 }
-                else Stuck();
+                else stuck();
             }
         }
     }
@@ -301,7 +301,7 @@ function randomMove(Color, paw) {
 class Game {
     constructor(player, id){
         this.player = player;
-        this.id = Number(sessionStorage.getItem('total_games'))+1;
+        this.id = Number(sessionStorage.getItem('game_id'));
     }
 }
 
