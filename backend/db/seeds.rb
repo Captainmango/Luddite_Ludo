@@ -21,29 +21,29 @@ nu_game1 = user1.games.new
 nu_game1.save
 
 20.times do
-    nu_game1.turns.create(colour: colours[0], token: "#{colours[0]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game1.turns.create(colour: colours[1], token: "#{colours[1]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game1.turns.create(colour: colours[2], token: "#{colours[2]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game1.turns.create(colour: colours[3], token: "#{colours[3]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game1.turns.create(colour: colours[0], pawn: "#{colours[0]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game1.turns.create(colour: colours[1], pawn: "#{colours[1]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game1.turns.create(colour: colours[2], pawn: "#{colours[2]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game1.turns.create(colour: colours[3], pawn: "#{colours[3]}pawn#{rand(1..4)}", roll: rand(1..6))
 end
 
 nu_game2 = user1.games.new
 nu_game2.save
 
 20.times do
-    nu_game2.turns.create(colour: colours[0], token: "#{colours[0]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game2.turns.create(colour: colours[1], token: "#{colours[1]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game2.turns.create(colour: colours[2], token: "#{colours[2]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game2.turns.create(colour: colours[3], token: "#{colours[3]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game2.turns.create(colour: colours[0], pawn: "#{colours[0]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game2.turns.create(colour: colours[1], pawn: "#{colours[1]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game2.turns.create(colour: colours[2], pawn: "#{colours[2]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game2.turns.create(colour: colours[3], pawn: "#{colours[3]}pawn#{rand(1..4)}", roll: rand(1..6))
 end
 
 nu_game3 = user1.games.new
 nu_game3.save
 
 20.times do
-    nu_game3.turns.create(colour: colours[0], token: "#{colours[0]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game3.turns.create(colour: colours[1], token: "#{colours[1]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game3.turns.create(colour: colours[2], token: "#{colours[2]}pawn#{rand(1..4)}", roll: rand(1..6))
-    nu_game3.turns.create(colour: colours[3], token: "#{colours[3]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game3.turns.create(colour: colours[0], pawn: "#{colours[0]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game3.turns.create(colour: colours[1], pawn: "#{colours[1]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game3.turns.create(colour: colours[2], pawn: "#{colours[2]}pawn#{rand(1..4)}", roll: rand(1..6))
+    nu_game3.turns.create(colour: colours[3], pawn: "#{colours[3]}pawn#{rand(1..4)}", roll: rand(1..6))
 end
         

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_05_06_152753) do
   create_table "turns", force: :cascade do |t|
     t.integer "game_id"
     t.string "colour"
-    t.integer "token"
+    t.string "pawn"
     t.integer "roll"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
