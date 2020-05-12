@@ -297,8 +297,6 @@ function randomMove(colour, pawn) {
     }
 }
 
-
-
 class Game {
     constructor(player, id){
         this.player = player;
@@ -314,3 +312,26 @@ class Turn {
         this.roll = roll;
     }
 }
+
+function createTurn(colour, pawn, roll){
+    let formData = {};
+    formData["game_id"] = sessionStorage.getItem("game_id");
+    formData["colour"] = colour;
+    formData["pawn"] = pawn;
+    formData["roll"] = roll
+    let confObj = {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData)
+        }
+    let req_url = base_url + `games/${formData["game_id"]}/turns`;
+
+    fetch(req_url, confObj).then((req)=>
+        req.json()).then(response => { 
+          console.log(response);
+            
+        })}

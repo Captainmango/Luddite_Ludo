@@ -4,12 +4,12 @@ class TurnsController < ApplicationController
 
     def create
         turn = game.turns.create(colour: params['colour'], pawn: params['pawn'], roll: params['roll'])
-        render :json {turn}.to_json
+        render json: turn.to_json
     end
 
     def index
         turns = game.turns
-        render :json {turns}.to_json
+        render json: turns.to_json
     end
 
     def get_game
