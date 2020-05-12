@@ -190,7 +190,7 @@ function createGame(){
     fetch(req_url, confObj).then((req)=>
         req.json()).then(response => { 
             if(response.game_id){
-            sessionStorage["game"] = response;
+            sessionStorage["game_id"] = response.game_id;
             } else {
                 sessionStorage.removeItem("game");
             }

@@ -40,6 +40,7 @@ function stuck() {
 function changePlayer() {
     if (roll != 6){
     let text = document.getElementById('player');
+    createTurn(currColour, currPawn, roll);
     switch (text.innerText) {
         case "red": text.innerText = text.style.color = "blue"; break;
         case "blue": text.innerText = text.style.color = "yellow"; break;
@@ -83,6 +84,7 @@ function checkForWinner() {
         uselesstext2.innerText = "";
         player.innerText = "The Winner is the "+currColour+" player";
     }
+    
 }
 function stepDown() {
     let doc = document.getElementById(currPawn);
