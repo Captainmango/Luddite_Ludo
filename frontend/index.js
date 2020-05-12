@@ -98,7 +98,7 @@ function update_page(){
         diceBtns.style.visibility = "hidden";
         dice.style.display = "none";
         game_msg.style.display = "none";
-        $("#turnsTable tr").remove();
+        $("#resultsTable tr").remove();
         $("#gamesTable tr").remove();
 
     } else {
