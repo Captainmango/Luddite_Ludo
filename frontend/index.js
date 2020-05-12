@@ -112,12 +112,14 @@ function update_page(){
         tokens.style.display = "none";
         turnsTableContainer.style.display = "none";
         gamesTableContainer.style.display = "none";
+        diceBtns.style.visibility = "hidden";
+        dice.style.display = "none";
+        game_msg.style.display = "none";
     }
 }
 
 function play_a_game(){
     if(current_user){
-        game.player = current_user();
         board.style.display = '';
         tokens.style.display = '';
         game_msg.style.display = '';
