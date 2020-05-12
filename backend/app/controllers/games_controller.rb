@@ -3,7 +3,7 @@ class GamesController < ApplicationController
     respond_to :html, :json
 
     def index
-        games = Game.where(user_id: params['user_id'])
+        games = Game.all
         render json: games.to_json
     end
 

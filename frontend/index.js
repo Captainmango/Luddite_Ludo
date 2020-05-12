@@ -33,6 +33,10 @@ var game_msg = document.getElementById('game_msg');
 var dice = document.getElementById('dice');
 var welcome = document.getElementById('welcome_msg');
 var title = document.getElementById('title');
+var searchBox = document.getElementById('myInput1');
+var gamesTable = document.getElementById('gamesTable');
+var turnsTable = document.getElementById('resultsTable');
+var allMyGames = document.getElementById('getGames');
 
 
 
@@ -42,6 +46,8 @@ logInBtn.addEventListener('click', getLogIn);
 logInToAcc.addEventListener('click', logIn);
 logOutBtn.addEventListener('click', logout);
 playGameBtn.addEventListener('click', play_a_game);
+searchBox.addEventListener('keyup', search);
+allMyGames.addEventListener('click', getAllGames);
 
 
 function getSignIn() {
@@ -67,6 +73,7 @@ function logout(){
     alert("Logged out successfully.");
 }
 
+
 function is_logged_in(){
     if(current_user()){
         return true
@@ -82,6 +89,7 @@ function update_page(){
         playGameBtn.classList.remove('disabled');
         accBtns.style.visibility = "hidden";
         welcome.style.display = "none";
+        
 
     } else {
         dropDownMenu.classList.add('disabled')
@@ -102,6 +110,7 @@ function play_a_game(){
         diceBtns.style.visibility ='';
         dice.style.display = ''
         playGameBtn.classList.add('disabled');
+        dropDownMenu.classList.add('disabled');
         title.style.visibility = "hidden";
         createGame();
         
@@ -194,6 +203,44 @@ function createGame(){
             } else {
                 sessionStorage.removeItem("game");
             }
+            
+        })}
+    
+function search(){
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            let value = $(this).val().toLowerCase();
+            $("#resultsTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        });
+    }
+
+function getAllGames(){
+    let confObj = {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+        
+    }
+
+    let req_url = base_url + "games";
+    
+    fetch(req_url, confObj).then((req)=>
+        req.json()).then(response => { 
+            response.forEach(game =>{
+                if(game.user_id == current_user()){
+                    let row = gamesTable.insertRow(0);
+                    let cell1 = row.insertCell(0);
+                    let cell2 = row.insertCell(1);
+                    cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="getTurns(${game.id})">${game.id}</a>'`;
+                    cell2.innerHTML = game.created_at;                    
+                }
+            })
             
         })}
 

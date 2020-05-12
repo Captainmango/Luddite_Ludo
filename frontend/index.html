@@ -34,8 +34,8 @@
             Dropdown
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button class="dropdown-item">Review last game</button>
-            <button class="dropdown-item">Review games</button>
+            <button id="reviewLastGame" class="dropdown-item">Review last game</button>
+            <button id="getGames" class="dropdown-item">Get my games</button>
             <button class="dropdown-item" id="logoutBtn">Log out</button>
           </div>
         </li>
@@ -160,6 +160,38 @@
 
     <div id="welcome_msg" class="jumbotron text-center" style="display: '';">
       Luddite Ludo is a way to play games of Ludo online and review your games. Sign up to see if you're really just unlucky getting out of the gate or not.
+    </div>
+
+    <div id=turnsContainer class="container" style="display: '';">
+      <input class="form-control" id="myInput1" type="text" placeholder="Search.." style="width: 500px;">
+      <br>
+      <table class="table-dark table-hover table-bordered" style="width:500px;">
+        <thead style="text-align: center;">
+          <tr>
+            <th>Colour</th>
+            <th>Pawn moved</th>
+            <th>Dice roll</th>
+          </tr>
+        </thead>
+        <tbody id="resultsTable">
+
+        </tbody>
+      </table>
+    </div>
+
+    <div id="gamesContainer" class="container" style="display: '';">
+      <br>
+      <table class="table-dark table-hover table-bordered" style="width:500px;">
+        <thead style="text-align: center;">
+          <tr>
+            <th>Id</th>
+            <th>Created at</th>
+          </tr>
+        </thead>
+        <tbody id="gamesTable">
+
+        </tbody>
+      </table>
     </div>
   
  

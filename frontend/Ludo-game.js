@@ -40,7 +40,7 @@ function stuck() {
 function changePlayer() {
     if (roll != 6){
     let text = document.getElementById('player');
-    createTurn(currColour, currPawn, roll);
+    createTurn(text.innerText, currPawn, roll);
     switch (text.innerText) {
         case "red": text.innerText = text.style.color = "blue"; break;
         case "blue": text.innerText = text.style.color = "yellow"; break;
@@ -288,6 +288,7 @@ function randomMove(colour, pawn) {
                         checkForWinner();
                         changePlayer();
                     }
+                    
                     roll = 0;
                     clicked = false;
                     let dice = document.getElementById('dice');
