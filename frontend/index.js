@@ -95,7 +95,11 @@ function update_page(){
         tokens.style.display = "none";
         turnsTableContainer.style.display = "none";
         gamesTableContainer.style.display = "none";
-        
+        diceBtns.style.visibility = "hidden";
+        dice.style.display = "none";
+        game_msg.style.display = "none";
+        $("#turnsTable tr").remove();
+        $("#gamesTable tr").remove();
 
     } else {
         dropDownMenu.classList.add('disabled')
@@ -108,13 +112,10 @@ function update_page(){
         tokens.style.display = "none";
         turnsTableContainer.style.display = "none";
         gamesTableContainer.style.display = "none";
-
-
     }
 }
 
 function play_a_game(){
-    let game = new Game(current_user);
     if(current_user){
         game.player = current_user();
         board.style.display = '';
@@ -125,7 +126,9 @@ function play_a_game(){
         playGameBtn.classList.add('disabled');
         dropDownMenu.classList.add('disabled');
         title.style.visibility = "hidden";
-        createGame();
+        if(!sessionStorage.game_id){
+            createGame();
+        }
         
     }
 
@@ -196,6 +199,7 @@ function logIn(){
         })}
 
 function createGame(){
+    
     let formData = {};
     formData["user_id"] = current_user();
     let confObj = {
@@ -221,7 +225,7 @@ function createGame(){
     
 function search(){
     $(document).ready(function(){
-        $("#myInput").on("keyup", function() {
+        $("#myInput1").on("keyup", function() {
             let value = $(this).val().toLowerCase();
             $("#resultsTable tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
@@ -231,6 +235,8 @@ function search(){
     }
 
 function getAllGames(){
+    update_page();
+    gamesTableContainer.style.display = '';
     let confObj = {
         method: "GET",
         mode: "cors",
@@ -250,13 +256,44 @@ function getAllGames(){
                     let row = gamesTable.insertRow(0);
                     let cell1 = row.insertCell(0);
                     let cell2 = row.insertCell(1);
-                    cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="getTurns(${game.id})">${game.id}</a>'`;
+                    cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="getGameTurns(${game.id})">${game.id}</a>'`;
                     cell2.innerHTML = game.created_at;                    
                 }
             })
             
-        })}
+        })
+    alert("Your games have been found. If you don't see anything, then you haven't played a game yet.")}
 
+        function getGameTurns(game_id){
+            update_page();
+            turnsTableContainer.style.display = '';
+            let confObj = {
+                method: "GET",
+                mode: "cors",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Accept": "application/json"
+                }
+                
+            }
+        
+            let req_url = base_url + `games/${game_id}/turns`;
+            
+            fetch(req_url, confObj).then((req)=>
+                req.json()).then(response => { 
+                    response.forEach(turn =>{
+                        if(turn.game_id == game_id){
+                            let row = turnsTable.insertRow(0);
+                            let cell1 = row.insertCell(0);
+                            let cell2 = row.insertCell(1);
+                            let cell3 = row.insertCell(2);
+                            cell1.innerHTML = turn.colour;
+                            cell2.innerHTML = turn.pawn;
+                            cell3.innerHTML = turn.roll;           
+                        }
+                    })
+                    
+                })}
 
 
 
