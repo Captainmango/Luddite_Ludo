@@ -39,7 +39,7 @@ function stuck() {
 }
 function changePlayer() {
     let text = document.getElementById('player')
-    createTurn(text.style.color, currPawn, roll);
+    turn.createTurn(text.style.color, currPawn, roll);
     if (roll != 6){
     ;
     switch (text.innerText) {
@@ -315,9 +315,8 @@ class Turn {
         this.pawn = pawn;
         this.roll = roll;
     }
-}
 
-function createTurn(colour, pawn, roll){
+createTurn = (colour, pawn, roll) => {
     let formData = {};
     formData["game_id"] = sessionStorage.getItem("game_id");
     formData["colour"] = colour;
@@ -339,3 +338,6 @@ function createTurn(colour, pawn, roll){
           console.log(response);
             
         })}
+
+    }
+let turn = new Turn;
