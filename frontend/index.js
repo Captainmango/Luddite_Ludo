@@ -37,6 +37,8 @@ var searchBox = document.getElementById('myInput1');
 var gamesTable = document.getElementById('gamesTable');
 var turnsTable = document.getElementById('resultsTable');
 var allMyGames = document.getElementById('getGames');
+var gamesTableContainer = document.getElementById('gamesContainer');
+var turnsTableContainer = document.getElementById('turnsContainer');
 
 
 
@@ -89,6 +91,10 @@ function update_page(){
         playGameBtn.classList.remove('disabled');
         accBtns.style.visibility = "hidden";
         welcome.style.display = "none";
+        main.style.display = "none"
+        tokens.style.display = "none";
+        turnsTableContainer.style.display = "none";
+        gamesTableContainer.style.display = "none";
         
 
     } else {
@@ -96,6 +102,13 @@ function update_page(){
         playGameBtn.classList.add('disabled');
         accBtns.style.visibility = "";
         welcome.style.display = "";
+        diceBtns.style.visibility = "hidden";
+        title.style.visibility = "";
+        main.style.display = "none"
+        tokens.style.display = "none";
+        turnsTableContainer.style.display = "none";
+        gamesTableContainer.style.display = "none";
+
 
     }
 }
