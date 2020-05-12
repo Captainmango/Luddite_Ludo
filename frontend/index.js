@@ -41,7 +41,6 @@ var gamesTableContainer = document.getElementById('gamesContainer');
 var turnsTableContainer = document.getElementById('turnsContainer');
 
 
-
 openBtn.addEventListener('click', getSignIn);
 signInBtn.addEventListener('click', signUp);
 logInBtn.addEventListener('click', getLogIn);
@@ -50,6 +49,7 @@ logOutBtn.addEventListener('click', logout);
 playGameBtn.addEventListener('click', play_a_game);
 searchBox.addEventListener('keyup', search);
 allMyGames.addEventListener('click', getAllGames);
+
 
 
 function getSignIn() {
@@ -134,6 +134,12 @@ function play_a_game(){
         
     }
 
+}
+
+function home(){
+    update_page();
+    title.style.visibility = '';
+    welcome.style.display = '';
 }
 
 
