@@ -119,6 +119,7 @@ function update_page(){
 }
 
 function play_a_game(){
+    update_page();
     if(current_user){
         board.style.display = '';
         tokens.style.display = '';

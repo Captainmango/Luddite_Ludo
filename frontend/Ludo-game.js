@@ -38,9 +38,10 @@ function stuck() {
     }
 }
 function changePlayer() {
+    let text = document.getElementById('player')
+    createTurn(text.style.color, currPawn, roll);
     if (roll != 6){
-    let text = document.getElementById('player');
-    createTurn(text.innerText, currPawn, roll);
+    ;
     switch (text.innerText) {
         case "red": text.innerText = text.style.color = "blue"; break;
         case "blue": text.innerText = text.style.color = "yellow"; break;
