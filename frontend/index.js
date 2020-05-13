@@ -23,7 +23,7 @@ var logInToAcc = document.getElementById('getUserAccount');
 var logOutBtn = document.getElementById('logoutBtn');
 var deleteAccount = document.getElementById('deleteAccount');
 
-// update page after log in elements
+// User.update page after log in elements
 var dropDownMenu = document.getElementById('navbarDropdown');
 var playGameBtn = document.getElementById('playGameBtn');
 var accBtns = document.getElementById('acc_btns');
@@ -64,7 +64,7 @@ class User {
 
     static logout() {
         sessionStorage.removeItem('current_user');
-        update_page();
+        User.update_page();
         alert("Logged out successfully.");
     }
 
@@ -81,7 +81,7 @@ class User {
 
 
     static update_page() {
-        if (is_logged_in()) {
+        if (User.is_logged_in()) {
             dropDownMenu.classList.remove('disabled');
             playGameBtn.classList.remove('disabled');
             accBtns.style.visibility = "hidden";
@@ -115,7 +115,7 @@ class User {
     }
 
     static play_a_game() {
-        update_page();
+        User.update_page();
         if (current_user) {
             board.style.display = '';
             tokens.style.display = '';
@@ -126,7 +126,7 @@ class User {
             dropDownMenu.classList.add('disabled');
             title.style.visibility = "hidden";
             if (!sessionStorage.game_id) {
-                createGame();
+                User.createGame();
             }
 
         }
@@ -134,7 +134,7 @@ class User {
     }
 
     static home() {
-        update_page();
+        User.update_page();
         title.style.visibility = '';
         welcome.style.display = '';
     }
@@ -168,7 +168,7 @@ class User {
                     alert("Signed up successfuly.")
                     $("#signInModal").modal('hide');
                     sessionStorage.setItem('current_user', response.nu_user_id);
-                    $("#signInModal").on('hidden.bs.modal', update_page());
+                    $("#signInModal").on('hidden.bs.modal', User.update_page());
                 }
             })
     }
@@ -201,7 +201,7 @@ class User {
                     alert("Logged in successfuly.")
                     $("#logInModal").modal('hide');
                     sessionStorage.setItem('current_user', response.user_id);
-                    $("#logInModal").on('hidden.bs.modal', update_page());
+                    $("#logInModal").on('hidden.bs.modal', User.update_page());
                 }
             })
     }
@@ -209,7 +209,7 @@ class User {
     static createGame() {
 
         let formData = {};
-        formData["user_id"] = current_user();
+        formData["user_id"] = User.current_user();
         let confObj = {
             method: "POST",
             mode: "cors",
@@ -244,7 +244,7 @@ class User {
     }
 
     static getAllGames() {
-        update_page();
+        User.update_page();
         gamesTableContainer.style.display = '';
         let confObj = {
             method: "GET",
@@ -261,11 +261,11 @@ class User {
         fetch(req_url, confObj).then((req) =>
             req.json()).then(response => {
                 response.forEach(game => {
-                    if (game.user_id == current_user()) {
+                    if (game.user_id == User.current_user()) {
                         let row = gamesTable.insertRow(0);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
-                        cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="getGameTurns(${game.id})">${game.id}</a>'`;
+                        cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="User.getGameTurns(${game.id})">${game.id}</a>'`;
                         cell2.innerHTML = game.created_at;
                     }
                 })
@@ -275,7 +275,7 @@ class User {
     }
 
     static getGameTurns(game_id) {
-        update_page();
+        User.update_page();
         turnsTableContainer.style.display = '';
         let confObj = {
             method: "GET",
@@ -307,9 +307,9 @@ class User {
     }
 
     static deleteUserAccount() {
-        update_page();
+        User.update_page();
         let formData = {};
-        formData['user_id'] = current_user();
+        formData['user_id'] = User.current_user();
         let confObj = {
             method: "POST",
             mode: "cors",
