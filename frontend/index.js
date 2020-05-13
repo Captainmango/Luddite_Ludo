@@ -21,6 +21,7 @@ var logInBtn = document.getElementById('logInBtn');
 var logInModal = document.getElementById('logInModal');
 var logInToAcc = document.getElementById('getUserAccount');
 var logOutBtn = document.getElementById('logoutBtn');
+var deleteAccount = document.getElementById('deleteAccount');
 
 // update page after log in elements
 var dropDownMenu = document.getElementById('navbarDropdown');
@@ -49,6 +50,7 @@ logOutBtn.addEventListener('click', logout);
 playGameBtn.addEventListener('click', play_a_game);
 searchBox.addEventListener('keyup', search);
 allMyGames.addEventListener('click', getAllGames);
+deleteAccount.addEventListener('click', deleteUserAccount);
 
 
 
@@ -303,6 +305,35 @@ function getAllGames(){
                     })
                     
                 })}
+
+                function deleteUserAccount(){
+                    update_page();
+                    let formData = {};
+                    formData['user_id'] = current_user();
+                    let confObj = {
+                        method: "POST",
+                        mode: "cors",
+                        headers: {
+                          "Content-Type": "application/json",
+                          "Accept": "application/json",
+                        },
+                        body: JSON.stringify(formData)
+                        
+                    }
+                
+                    let req_url = base_url + `users/${formData['user_id']}`;
+                    
+                    fetch(req_url, confObj).then((req)=>
+                        req.json()).then(response => { 
+                                if(req.ok){
+                                    alert("Account deleted successfully");
+                                } else {
+                                    alert("Account not deleted. Are you logged in?");
+                                }
+                                
+                            })}
+                            
+                        
 
 
 

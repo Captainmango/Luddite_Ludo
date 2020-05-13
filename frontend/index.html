@@ -27,6 +27,10 @@
         <li class="nav-item">
           <button type="button" class="btn btn-large btn-success nav-link disabled" id="playGameBtn">Play a game</a>
         </li>
+
+        <li class="nav-item">
+          <button class="btn btn-large btn-info nav-link" onclick="home()">Home page</button>
+        </li>
         <!-- review games dropdown-->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle nav-link disabled" href="#" id="navbarDropdown" role="button"
@@ -34,13 +38,14 @@
             Dropdown
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <button id="reviewLastGame" class="dropdown-item">Review last game</button>
             <button id="getGames" class="dropdown-item">Get my games</button>
             <button class="dropdown-item" id="logoutBtn">Log out</button>
           </div>
         </li>
       </ul>
-      <button class="btn btn-large nav-link" onclick="home()">Home page</button>
+      <button id="deleteAccount" class="btn btn-large btn-danger nav-link">Delete account</button>
+      
+      
     </div>
   </nav>
 

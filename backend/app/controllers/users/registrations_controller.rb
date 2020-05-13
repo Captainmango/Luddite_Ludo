@@ -20,4 +20,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     end
 
+    def destroy
+        user = User.find_by_id(params['id'])
+        user.destroy
+        render json: {}.to_json
+    end
+
+
 end
