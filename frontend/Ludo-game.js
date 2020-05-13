@@ -26,6 +26,7 @@ return false;
 
 function stuck() {
     let text = document.getElementById('player');
+    turn.createTurn(text.style.color, currPawn, roll);
     if (onboard[currPawn] == 0||currPos+roll>44) {
         if (dontHaveOtherFree()||currPos+roll>44) {
             let badtext = document.getElementById('badtext');
@@ -39,9 +40,8 @@ function stuck() {
 }
 function changePlayer() {
     let text = document.getElementById('player')
-    turn.createTurn(text.style.color, currPawn, roll);
+    
     if (roll != 6){
-    ;
     switch (text.innerText) {
         case "red": text.innerText = text.style.color = "blue"; break;
         case "blue": text.innerText = text.style.color = "yellow"; break;
@@ -229,6 +229,7 @@ function randomMove(colour, pawn) {
             let position = currPos;
             if (text.innerText == currColour) {
                 if (onboard[currPawn] === 1 || roll === 6) {
+                    turn.createTurn(text.style.color, currPawn, roll);
                     if (onboard[currPawn] === 0) {
                         let doc = document.getElementById(currPawn);
                         switch (colour) {
@@ -295,7 +296,7 @@ function randomMove(colour, pawn) {
                     let dice = document.getElementById('dice');
                     dice.style.backgroundImage = "url(Images/dice.gif)";
                 }
-                else stuck();
+                else{turn.createTurn(text.style.color, currPawn, roll); stuck();}
             }
         }
     }
