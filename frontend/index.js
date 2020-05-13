@@ -117,6 +117,7 @@ function update_page(){
         diceBtns.style.visibility = "hidden";
         dice.style.display = "none";
         game_msg.style.display = "none";
+        accBtns.style.visibility = '';
     }
 }
 
