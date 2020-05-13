@@ -42,303 +42,315 @@ var gamesTableContainer = document.getElementById('gamesContainer');
 var turnsTableContainer = document.getElementById('turnsContainer');
 
 
-openBtn.addEventListener('click', getSignIn);
-signInBtn.addEventListener('click', signUp);
-logInBtn.addEventListener('click', getLogIn);
-logInToAcc.addEventListener('click', logIn);
-logOutBtn.addEventListener('click', logout);
-playGameBtn.addEventListener('click', play_a_game);
-searchBox.addEventListener('keyup', search);
-allMyGames.addEventListener('click', getAllGames);
-deleteAccount.addEventListener('click', deleteUserAccount);
+class User {
 
+    static getSignIn() {
+        signInModal.style.display = "block";
+    }
 
+    static getLogIn() {
+        logInModal.style.display = "block";
+    }
 
-function getSignIn() {
-    signInModal.style.display = "block";
-}
+    static current_user() {
+        if (isNaN(parseInt(sessionStorage.getItem('current_user'), 10))) {
+            return false
+        }
+        else {
 
-function getLogIn() {
-    logInModal.style.display = "block";
-}
-
-function current_user(){
-    if(isNaN(parseInt(sessionStorage.getItem('current_user'),10))){
-            return false}
-        else{
-            
-            return parseInt(sessionStorage.getItem('current_user'),10)
+            return parseInt(sessionStorage.getItem('current_user'), 10)
         }
     }
 
-function logout(){
-    sessionStorage.removeItem('current_user');
-    update_page();
-    alert("Logged out successfully.");
-}
-
-
-function is_logged_in(){
-    if(current_user()){
-        return true
-    } else {
-        return false
+    static logout() {
+        sessionStorage.removeItem('current_user');
+        update_page();
+        alert("Logged out successfully.");
     }
 
-}
 
-function update_page(){
-    if(is_logged_in()){
-        dropDownMenu.classList.remove('disabled');
-        playGameBtn.classList.remove('disabled');
-        accBtns.style.visibility = "hidden";
-        welcome.style.display = "none";
-        main.style.display = "none"
-        tokens.style.display = "none";
-        turnsTableContainer.style.display = "none";
-        gamesTableContainer.style.display = "none";
-        diceBtns.style.visibility = "hidden";
-        dice.style.display = "none";
-        game_msg.style.display = "none";
-        $("#resultsTable tr").remove();
-        $("#gamesTable tr").remove();
-
-    } else {
-        dropDownMenu.classList.add('disabled')
-        playGameBtn.classList.add('disabled');
-        accBtns.style.visibility = "";
-        welcome.style.display = "";
-        diceBtns.style.visibility = "hidden";
-        title.style.visibility = "";
-        main.style.display = "none"
-        tokens.style.display = "none";
-        turnsTableContainer.style.display = "none";
-        gamesTableContainer.style.display = "none";
-        diceBtns.style.visibility = "hidden";
-        dice.style.display = "none";
-        game_msg.style.display = "none";
-        accBtns.style.visibility = '';
-    }
-}
-
-function play_a_game(){
-    update_page();
-    if(current_user){
-        board.style.display = '';
-        tokens.style.display = '';
-        game_msg.style.display = '';
-        diceBtns.style.visibility ='';
-        dice.style.display = ''
-        playGameBtn.classList.add('disabled');
-        dropDownMenu.classList.add('disabled');
-        title.style.visibility = "hidden";
-        if(!sessionStorage.game_id){
-            createGame();
+    static is_logged_in() {
+        if (current_user()) {
+            return true
+        } else {
+            return false
         }
-        
+
     }
 
-}
-
-function home(){
-    update_page();
-    title.style.visibility = '';
-    welcome.style.display = '';
-}
 
 
-function signUp(){
-    let formData = {};
-    let email = document.getElementById("email_address").value;
-    let password = document.getElementById("user_password").value;
-    formData["email"] = email;
-    formData["password"] = password;
+    static update_page() {
+        if (is_logged_in()) {
+            dropDownMenu.classList.remove('disabled');
+            playGameBtn.classList.remove('disabled');
+            accBtns.style.visibility = "hidden";
+            welcome.style.display = "none";
+            main.style.display = "none"
+            tokens.style.display = "none";
+            turnsTableContainer.style.display = "none";
+            gamesTableContainer.style.display = "none";
+            diceBtns.style.visibility = "hidden";
+            dice.style.display = "none";
+            game_msg.style.display = "none";
+            $("#resultsTable tr").remove();
+            $("#gamesTable tr").remove();
 
-    let confObj = {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(formData)
+        } else {
+            dropDownMenu.classList.add('disabled')
+            playGameBtn.classList.add('disabled');
+            accBtns.style.visibility = "";
+            welcome.style.display = "";
+            diceBtns.style.visibility = "hidden";
+            title.style.visibility = "";
+            main.style.display = "none"
+            tokens.style.display = "none";
+            turnsTableContainer.style.display = "none";
+            gamesTableContainer.style.display = "none";
+            diceBtns.style.visibility = "hidden";
+            dice.style.display = "none";
+            game_msg.style.display = "none";
+            accBtns.style.visibility = '';
         }
-    let req_url = base_url + "users";
+    }
 
-    fetch(req_url, confObj).then((req)=>
-        req.json()).then(response => { 
-            if (response.nu_user_id === null){
-                alert("Could not sign up. Check email and password.");
-                $("#signInModal").modal('hide');
+    static play_a_game() {
+        update_page();
+        if (current_user) {
+            board.style.display = '';
+            tokens.style.display = '';
+            game_msg.style.display = '';
+            diceBtns.style.visibility = '';
+            dice.style.display = ''
+            playGameBtn.classList.add('disabled');
+            dropDownMenu.classList.add('disabled');
+            title.style.visibility = "hidden";
+            if (!sessionStorage.game_id) {
+                createGame();
             }
-            else {
-                alert("Signed up successfuly.")
-                $("#signInModal").modal('hide');
-                sessionStorage.setItem('current_user', response.nu_user_id);
-                $("#signInModal").on('hidden.bs.modal' , update_page());
-            }  
-        })}
 
-function logIn(){
-    let formData = {};
-    let email = document.getElementById("acc_email_address").value;
-    let password = document.getElementById("acc_user_password").value;
-    formData["email"] = email;
-    formData["password"] = password;
-
-    let confObj = {
-        method: "POST",
-        mode: "cors",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(formData)
         }
-    let req_url = base_url + "users/sign_in";
 
-    fetch(req_url, confObj).then((req)=>
-        req.json()).then(response => { 
-            if (response.user_id === null){
-                alert("Could not log in. Check email and password.");
-                $("#logInModal").modal('hide');
-            }
-            else {
-                alert("Logged in successfuly.")
-                $("#logInModal").modal('hide');
-                sessionStorage.setItem('current_user', response.user_id);
-                $("#logInModal").on('hidden.bs.modal' , update_page());}  
-        })}
-
-function createGame(){
-    
-    let formData = {};
-    formData["user_id"] = current_user();
-    let confObj = {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(formData)
-        }
-    let req_url = base_url + "games";
-
-    fetch(req_url, confObj).then((req)=>
-        req.json()).then(response => { 
-            if(response.game_id){
-            sessionStorage["game_id"] = response.game_id;
-            } else {
-                sessionStorage.removeItem("game");
-            }
-            
-        })}
-    
-function search(){
-    $(document).ready(function(){
-        $("#myInput1").on("keyup", function() {
-            let value = $(this).val().toLowerCase();
-            $("#resultsTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-        });
     }
 
-function getAllGames(){
-    update_page();
-    gamesTableContainer.style.display = '';
-    let confObj = {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-        
+    static home() {
+        update_page();
+        title.style.visibility = '';
+        welcome.style.display = '';
     }
 
-    let req_url = base_url + "games";
-    
-    fetch(req_url, confObj).then((req)=>
-        req.json()).then(response => { 
-            response.forEach(game =>{
-                if(game.user_id == current_user()){
-                    let row = gamesTable.insertRow(0);
-                    let cell1 = row.insertCell(0);
-                    let cell2 = row.insertCell(1);
-                    cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="getGameTurns(${game.id})">${game.id}</a>'`;
-                    cell2.innerHTML = game.created_at;                    
+
+    static signUp() {
+        let formData = {};
+        let email = document.getElementById("email_address").value;
+        let password = document.getElementById("user_password").value;
+        formData["email"] = email;
+        formData["password"] = password;
+
+        let confObj = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+        let req_url = base_url + "users";
+
+        fetch(req_url, confObj).then((req) =>
+            req.json()).then(response => {
+                if (response.nu_user_id === null) {
+                    alert("Could not sign up. Check email and password.");
+                    $("#signInModal").modal('hide');
+                }
+                else {
+                    alert("Signed up successfuly.")
+                    $("#signInModal").modal('hide');
+                    sessionStorage.setItem('current_user', response.nu_user_id);
+                    $("#signInModal").on('hidden.bs.modal', update_page());
                 }
             })
-            
-        })
-    alert("Your games have been found. If you don't see anything, then you haven't played a game yet.")}
+    }
 
-        function getGameTurns(game_id){
-            update_page();
-            turnsTableContainer.style.display = '';
-            let confObj = {
-                method: "GET",
-                mode: "cors",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Accept": "application/json"
+    static logIn() {
+        let formData = {};
+        let email = document.getElementById("acc_email_address").value;
+        let password = document.getElementById("acc_user_password").value;
+        formData["email"] = email;
+        formData["password"] = password;
+
+        let confObj = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+        let req_url = base_url + "users/sign_in";
+
+        fetch(req_url, confObj).then((req) =>
+            req.json()).then(response => {
+                if (response.user_id === null) {
+                    alert("Could not log in. Check email and password.");
+                    $("#logInModal").modal('hide');
                 }
-                
+                else {
+                    alert("Logged in successfuly.")
+                    $("#logInModal").modal('hide');
+                    sessionStorage.setItem('current_user', response.user_id);
+                    $("#logInModal").on('hidden.bs.modal', update_page());
+                }
+            })
+    }
+
+    static createGame() {
+
+        let formData = {};
+        formData["user_id"] = current_user();
+        let confObj = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+        let req_url = base_url + "games";
+
+        fetch(req_url, confObj).then((req) =>
+            req.json()).then(response => {
+                if (response.game_id) {
+                    sessionStorage["game_id"] = response.game_id;
+                } else {
+                    sessionStorage.removeItem("game");
+                }
+
+            })
+    }
+
+    static search() {
+        $(document).ready(function () {
+            $("#myInput1").on("keyup", function () {
+                let value = $(this).val().toLowerCase();
+                $("#resultsTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    }
+
+    static getAllGames() {
+        update_page();
+        gamesTableContainer.style.display = '';
+        let confObj = {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             }
-        
-            let req_url = base_url + `games/${game_id}/turns`;
-            
-            fetch(req_url, confObj).then((req)=>
-                req.json()).then(response => { 
-                    response.forEach(turn =>{
-                        if(turn.game_id == game_id){
-                            let row = turnsTable.insertRow(0);
-                            let cell1 = row.insertCell(0);
-                            let cell2 = row.insertCell(1);
-                            let cell3 = row.insertCell(2);
-                            cell1.innerHTML = turn.colour;
-                            cell2.innerHTML = turn.pawn;
-                            cell3.innerHTML = turn.roll;           
-                        }
-                    })
-                    
-                })}
 
-                function deleteUserAccount(){
-                    update_page();
-                    let formData = {};
-                    formData['user_id'] = current_user();
-                    let confObj = {
-                        method: "POST",
-                        mode: "cors",
-                        headers: {
-                          "Content-Type": "application/json",
-                          "Accept": "application/json",
-                        },
-                        body: JSON.stringify(formData)
-                        
+        }
+
+        let req_url = base_url + "games";
+
+        fetch(req_url, confObj).then((req) =>
+            req.json()).then(response => {
+                response.forEach(game => {
+                    if (game.user_id == current_user()) {
+                        let row = gamesTable.insertRow(0);
+                        let cell1 = row.insertCell(0);
+                        let cell2 = row.insertCell(1);
+                        cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="getGameTurns(${game.id})">${game.id}</a>'`;
+                        cell2.innerHTML = game.created_at;
                     }
-                
-                    let req_url = base_url + `users/${formData['user_id']}`;
-                    
-                    fetch(req_url, confObj).then((req)=>
-                        req.json()).then(response => { 
-                                if(req.ok){
-                                    alert("Account deleted successfully");
-                                } else {
-                                    alert("Account not deleted. Are you logged in?");
-                                }
-                                
-                            })}
-                            
-                        
+                })
+
+            })
+        alert("Your games have been found. If you don't see anything, then you haven't played a game yet.")
+    }
+
+    static getGameTurns(game_id) {
+        update_page();
+        turnsTableContainer.style.display = '';
+        let confObj = {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+
+        }
+
+        let req_url = base_url + `games/${game_id}/turns`;
+
+        fetch(req_url, confObj).then((req) =>
+            req.json()).then(response => {
+                response.forEach(turn => {
+                    if (turn.game_id == game_id) {
+                        let row = turnsTable.insertRow(0);
+                        let cell1 = row.insertCell(0);
+                        let cell2 = row.insertCell(1);
+                        let cell3 = row.insertCell(2);
+                        cell1.innerHTML = turn.colour;
+                        cell2.innerHTML = turn.pawn;
+                        cell3.innerHTML = turn.roll;
+                    }
+                })
+
+            })
+    }
+
+    static deleteUserAccount() {
+        update_page();
+        let formData = {};
+        formData['user_id'] = current_user();
+        let confObj = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(formData)
+
+        }
+
+        let req_url = base_url + `users/${formData['user_id']}`;
+
+        fetch(req_url, confObj).then((req) =>
+            req.json()).then(response => {
+                if (req.ok) {
+                    alert("Account deleted successfully");
+                } else {
+                    alert("Account not deleted. Are you logged in?");
+                }
+
+            })
+    }
+
+}
+
+openBtn.addEventListener('click', User.getSignIn);
+signInBtn.addEventListener('click', User.signUp);
+logInBtn.addEventListener('click', User.getLogIn);
+logInToAcc.addEventListener('click', User.logIn);
+logOutBtn.addEventListener('click', User.logout);
+playGameBtn.addEventListener('click', User.play_a_game);
+searchBox.addEventListener('keyup', User.search);
+allMyGames.addEventListener('click', User.getAllGames);
+deleteAccount.addEventListener('click', User.deleteUserAccount);
 
 
 
 
 
-    
+
+
+
 
