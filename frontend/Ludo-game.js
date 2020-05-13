@@ -209,6 +209,8 @@ function randomNum() {
         clicked = true;
     }
     if (roll != 6 && dontHaveOtherFree()) {
+        let text = document.getElementById('player');
+        turn.createTurn(text.style.color, "", roll);
         let bad = document.getElementById('badtext');
         bad.innerText = "Unfortunately you're stuck :(";
         window.setTimeout(changePlayer, 1000);
@@ -296,7 +298,7 @@ function randomMove(colour, pawn) {
                     let dice = document.getElementById('dice');
                     dice.style.backgroundImage = "url(Images/dice.gif)";
                 }
-                else{turn.createTurn(text.style.color, currPawn, roll); stuck();}
+                else stuck();
             }
         }
     }
