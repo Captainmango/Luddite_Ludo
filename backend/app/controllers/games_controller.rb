@@ -14,12 +14,13 @@ class GamesController < ApplicationController
     end
 
     def show
+        game = Game.find(params["id"])
         last_turn = game.turns.last
         render json: {game: game, last_turn: last_turn}.to_json
     end
 
     def destroy
-        game = Game.where(user_id: params['user_id']).last
+        game = Game.where(user_id: params["id"]).last
         Turn.where(game_id: game.id).destroy_all
         game.destroy
         render json: {}.to_json

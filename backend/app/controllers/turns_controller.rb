@@ -18,4 +18,9 @@ class TurnsController < ApplicationController
         game = Game.find_by_id(params['game_id'])
     end
 
+    def destroy
+        turn = Turn.find(params['id'])
+        turn.destroy
+    end
+
 end

@@ -344,3 +344,4 @@ createTurn = (colour, pawn, roll) => {
 
     }
 let turn = new Turn;
+let game = new Game(current_user(), sessionStorage['game_id']);

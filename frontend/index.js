@@ -228,7 +228,8 @@ function createGame(){
     fetch(req_url, confObj).then((req)=>
         req.json()).then(response => { 
             if(response.game_id){
-            sessionStorage["game_id"] = response.game_id;
+                let game = new Game(current_user(), response.game_id)
+                return game
             } else {
                 sessionStorage.removeItem("game");
             }
@@ -312,33 +313,11 @@ function getAllGames(){
                     let formData = {};
                     formData['user_id'] = current_user();
                     let confObj = {
-                        method: "POST",
-                        mode: "cors",
-                        headers: {
-                          "Content-Type": "application/json",
-                          "Accept": "application/json",
-                        },
-                        body: JSON.stringify(formData)
-                        
-                    }
+                        method: "delete",
+                        headers: {"Content-Type": "application/json"
+                          }
+                        }
                 
-                    let req_url = base_url + `users/${formData['user_id']}`;
-                    
-                    fetch(req_url, confObj).then((req)=>
-                        req.json()).then(response => { 
-                                if(req.ok){
-                                    alert("Account deleted successfully");
-                                } else {
-                                    alert("Account not deleted. Are you logged in?");
-                                }
-                                
-                            })}
-                            
-                        
-
-
-
-
-
-    
-
+                    let req_url = "http://localhost:3000/turns/3";
+                    fetch(req_url, confObj).then(req => req.json().then(resp => console.log(resp)));
+                    }
