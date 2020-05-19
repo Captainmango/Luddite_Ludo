@@ -119,7 +119,7 @@ function randomNum() {
         dice.style.backgroundImage = "url(Images/" + roll + ".jpg)";
         clicked = true;
     }
-    if (roll != 6 && dontHaveOtherFree()) {
+    if (roll != 6 && game.dontHaveOtherFree()) {
         let text = document.getElementById('player');
         turn.createTurn(text.style.color, "", roll);
         let bad = document.getElementById('badtext');
@@ -135,7 +135,7 @@ function randomMove(colour, pawn) {
     currPawn = currColour + "pawn" + numOfPawn;
     currPos = positions[currPawn];
     if (roll + currPos > 44) {
-        stuck();
+        game.stuck();
     }
     else {
         if (clicked) {
@@ -195,13 +195,13 @@ function randomMove(colour, pawn) {
                                 break;
                         }
                         positions[currPawn] = currPos;
-                        let victim = haveHover();
+                        let victim = game.haveHover();
                         if (victim != false) {
-                            ResetPawn(victim);
+                            game.ResetPawn(victim);
                         }
                         if (currPos == 44) { pawnOut[currColour]++; onboard[currPawn] = 0; positions[currPawn] = 0; document.getElementById(currPawn).style.visibility = "hidden"; };
-                        checkForWinner();
-                        changePlayer();
+                        game.checkForWinner();
+                        game.changePlayer();
                     }
                     
                     roll = 0;
@@ -209,7 +209,7 @@ function randomMove(colour, pawn) {
                     let dice = document.getElementById('dice');
                     dice.style.backgroundImage = "url(Images/dice.gif)";
                 }
-                else stuck();
+                else game.stuck();
             }
         }
     }
@@ -349,3 +349,4 @@ createTurn = (colour, pawn, roll) => {
 
     }
 let turn = new Turn;
+var game;

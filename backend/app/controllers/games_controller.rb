@@ -4,25 +4,13 @@ class GamesController < ApplicationController
 
     def index
         games = Game.all
-        render json: games.to_json
+        render json: GameSerializer.new(games).serialized_json
     end
 
     def create
         game = Game.create(user_id: params['user_id'])
         game.save
-        render json: {game_id: game.id, user_id: game.user_id}.to_json
-    end
-
-    def show
-        last_turn = game.turns.last
-        render json: {game: game, last_turn: last_turn}.to_json
-    end
-
-    def destroy
-        game = Game.where(user_id: params['user_id']).last
-        Turn.where(game_id: game.id).destroy_all
-        game.destroy
-        render json: {}.to_json
+        render json: GameSerializer.new(game).serialized_json
     end
 
     def get_game
