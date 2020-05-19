@@ -41,7 +41,15 @@ var allMyGames = document.getElementById('getGames');
 var gamesTableContainer = document.getElementById('gamesContainer');
 var turnsTableContainer = document.getElementById('turnsContainer');
 var user;
-var game;
+
+window.addEventListener('beforeunload', (event) => {
+    sessionStorage.clear();
+    // Cancel the event as stated by the standard.
+    event.preventDefault();
+    // Chrome requires returnValue to be set.
+    event.returnValue = 'Clearing site data';
+  });
+
 
 
 class User {
@@ -65,6 +73,15 @@ class User {
         else {
 
             return parseInt(sessionStorage.getItem('current_user'), 10)
+        }
+    }
+
+    static current_game() {
+        if (isNaN(parseInt(sessionStorage.getItem('game_id'), 10))) {
+            return false
+        }
+        else {
+            return parseInt(sessionStorage.getItem('game_id'), 10)
         }
     }
 
@@ -131,7 +148,9 @@ class User {
             playGameBtn.classList.add('disabled');
             dropDownMenu.classList.add('disabled');
             title.style.visibility = "hidden";
-            if (!sessionStorage.game_id) {
+            if (User.current_game()) {
+                game = new Game(User.current_game(), User.current_user());
+            } else {
                 User.createGame();
             }
 
@@ -234,12 +253,12 @@ class User {
         let req_url = base_url + "games";
 
         fetch(req_url, confObj).then((req) =>
-            req.json()).then(response => {
-                if (response.data.id) {console.log(response);
-                    game = new Game(this.current_user, response.data.id);
-                    sessionStorage["game_id"] = response.game_id;
+            req.json()).then(response => {console.log(response);
+                if (User.current_game()) {
+                    game = new Game(User.current_user, User.current_game);
                 } else {
-                    sessionStorage.removeItem("game");
+                    game = new Game(User.current_user, response.data.attributes.id);
+                    sessionStorage["game_id"] = response.data.attributes.id;
                 }
 
             })

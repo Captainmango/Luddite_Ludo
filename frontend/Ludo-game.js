@@ -122,7 +122,7 @@ function randomNum() {
     if (roll != 6 && game.dontHaveOtherFree()) {
         let text = document.getElementById('player');
         turn.createTurn(text.style.color, "", roll);
-        let bad = document.getElementById('badtext');
+        var bad = document.getElementById('badtext');
         bad.innerText = "Unfortunately you're stuck :(";
         window.setTimeout(game.changePlayer(), 1000);
         clicked = false;
@@ -276,7 +276,7 @@ class Game {
             case "green": text.innerText = text.style.color = "red"; break;
         }
         }
-        let badtext = document.getElementById('badtext');
+        var badtext = document.getElementById('badtext');
         badtext.innerText = "";
         let dice = document.getElementById('dice');
         dice.style.backgroundImage = "url(Images/dice.gif)";
@@ -286,7 +286,7 @@ class Game {
         turn.createTurn(text.style.color, currPawn, roll);
         if (onboard[currPawn] == 0||currPos+roll>44) {
             if (dontHaveOtherFree()||currPos+roll>44) {
-                let badtext = document.getElementById('badtext');
+                var badtext = document.getElementById('badtext');
                 badtext.innerText = "Unfortunately you're stuck :(";
                 clicked = false;
                 let dice = document.getElementById('dice');
@@ -349,3 +349,5 @@ createTurn = (colour, pawn, roll) => {
 
     }
 let turn = new Turn;
+let game;
+var bad = document.getElementById('badtext');
