@@ -297,9 +297,10 @@ class User {
                         let row = gamesTable.insertRow(0);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
-                        
+                        let cell3 = row.insertCell(2);
                         cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="User.getGameTurns(${game.id})">${game.id}</a>'`;
                         cell2.innerHTML = game.attributes.created_at.toString(); 
+                        cell3.innerHTML = `'<a class="btn btn-danger text-white" id="game${game.id}" href ="#" onclick="User.deleteGame(${game.id})">Delete game</a>'`;
                     }
                 })
 
@@ -365,7 +366,35 @@ class User {
         
         })
     }
+
+    static deleteGame(game_id) {
+        let formData = {};
+        formData['game_id'] = game_id;
+        let confObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+
+        }
+
+        let req_url = base_url + `games/${formData['game_id']}`;
+
+        fetch(req_url, confObj).then(req => req.json()).then(response => {
+            if(response.data.attributes.id){
+                alert(`Game ${response.data.attributes.id} deleted successfully`);
+                User.getAllGames();}
+            else{
+                User.home();
+                alert("Game not deleted. Please search games again");
+            }
+        
+        })
+    }
 }
+
+
+
 
 
 

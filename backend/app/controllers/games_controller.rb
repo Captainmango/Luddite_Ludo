@@ -13,6 +13,13 @@ class GamesController < ApplicationController
         render json: GameSerializer.new(game).serialized_json
     end
 
+    def destroy
+        game = Game.find(params["id"])
+        game.turns.destroy
+        game.destroy
+        render json: GameSerializer.new(game).serialized_json
+    end
+
     def get_game
         game = Game.find_by_id(params['game_id'])
     end
