@@ -124,7 +124,7 @@ function randomNum() {
         turn.createTurn(text.style.color, "", roll);
         let bad = document.getElementById('badtext');
         bad.innerText = "Unfortunately you're stuck :(";
-        window.setTimeout(changePlayer, 1000);
+        window.setTimeout(game.changePlayer(), 1000);
         clicked = false;
     }
 }
@@ -349,4 +349,3 @@ createTurn = (colour, pawn, roll) => {
 
     }
 let turn = new Turn;
-var game;

@@ -204,14 +204,15 @@ class User {
 
         fetch(req_url, confObj).then((req) =>
             req.json()).then(response => {
-                if (response.user_id === null) {
+                user = new User(response.data.attributes.id, response.data.attributes.email);
+                if (user.id === undefined) {
                     alert("Could not log in. Check email and password.");
                     $("#logInModal").modal('hide');
                 }
                 else {
-                    alert("Logged in successfuly.")
+                    alert("Logged in successfuly.");
                     $("#logInModal").modal('hide');
-                    sessionStorage.setItem('current_user', response.user_id);
+                    sessionStorage.setItem('current_user', user.id);
                     $("#logInModal").on('hidden.bs.modal', User.update_page());
                 }
             })
@@ -234,7 +235,7 @@ class User {
 
         fetch(req_url, confObj).then((req) =>
             req.json()).then(response => {
-                if (response.game_id) {
+                if (response.data.id) {console.log(response);
                     game = new Game(this.current_user, response.data.id);
                     sessionStorage["game_id"] = response.game_id;
                 } else {
@@ -272,13 +273,13 @@ class User {
 
         fetch(req_url, confObj).then((req) =>
             req.json()).then(response => {
-                response.forEach(game => {
-                    if (game.user_id == User.current_user()) {
+                response.data.forEach(game => {
+                    if (game.attributes.user_id == User.current_user()) {
                         let row = gamesTable.insertRow(0);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
                         cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="User.getGameTurns(${game.id})">${game.id}</a>'`;
-                        cell2.innerHTML = game.created_at;
+                        cell2.innerHTML = game.attributes.created_at.toString(); 
                     }
                 })
 
@@ -303,50 +304,50 @@ class User {
 
         fetch(req_url, confObj).then((req) =>
             req.json()).then(response => {
-                response.forEach(turn => {
-                    if (turn.game_id == game_id) {
+                response.data.forEach(turn => {
+                    if (turn.attributes.game_id == game_id) {
                         let row = turnsTable.insertRow(0);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
                         let cell3 = row.insertCell(2);
-                        cell1.innerHTML = turn.colour;
-                        cell2.innerHTML = turn.pawn;
-                        cell3.innerHTML = turn.roll;
+                        let cell4 = row.insertCell(3);
+                        cell1.innerHTML = turn.attributes.colour;
+                        cell2.innerHTML = turn.attributes.pawn;
+                        cell3.innerHTML = turn.attributes.roll;
+                        cell4.innerHTML = `'<a class="btn btn-danger text-white" id="turn${turn.id}" href ="#" onclick="User.deleteGameTurn(${turn.id})">Delete turn</a>'`;
                     }
                 })
 
             })
     }
 
-    static deleteUserAccount() {
-        User.update_page();
+    static deleteGameTurn(turn_id) {
         let formData = {};
-        formData['user_id'] = User.current_user();
+        formData['turn_id'] = turn_id;
         let confObj = {
-            method: "POST",
-            mode: "cors",
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
-            },
-            body: JSON.stringify(formData)
+            }
 
         }
 
-        let req_url = base_url + `users/${formData['user_id']}`;
+        let req_url = base_url + `turns/${formData['turn_id']}`;
 
-        fetch(req_url, confObj).then((req) =>
-            req.json()).then(response => {
-                if (req.ok) {
-                    alert("Account deleted successfully");
-                } else {
-                    alert("Account not deleted. Are you logged in?");
-                }
-
-            })
+        fetch(req_url, confObj).then(req => req.json()).then(response => {
+            if(response.data.attributes.id){
+                alert(`Turn ${response.data.attributes.id} deleted successfully`);
+                User.getGameTurns(response.data.attributes.game_id);}
+            else{
+                User.home();
+                alert("Turn not deleted. Please search turns again");
+            }
+        
+        })
     }
-
 }
+
+
 
 openBtn.addEventListener('click', User.getSignIn);
 signInBtn.addEventListener('click', User.signUp);

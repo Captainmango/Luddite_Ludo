@@ -17,7 +17,7 @@ class TurnsController < ApplicationController
     def destroy
         turn = Turn.find(params["id"])
         turn.destroy
-        render json: TurnsSerializer.new(turns).serialized_json
+        render json: TurnsSerializer.new(turn).serialized_json
     end
 
     def get_game
