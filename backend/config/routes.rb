@@ -4,7 +4,7 @@ Rails.application.routes.draw do
                                   }
   post "/games", to: "games#create"
   get "/games", to: "games#index"
-  delete "/games/:id", to: "games#destroy"
+  delete "/turns/:id", to: "turns#destroy"
 
   resources :games, only: [:show] do
     get "/turns", to: "turns#index"

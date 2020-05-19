@@ -40,9 +40,15 @@ var turnsTable = document.getElementById('resultsTable');
 var allMyGames = document.getElementById('getGames');
 var gamesTableContainer = document.getElementById('gamesContainer');
 var turnsTableContainer = document.getElementById('turnsContainer');
+var user;
+var game;
 
 
 class User {
+    constructor(id, email){
+        this.id = id;
+        this.email = email;
+    }
 
     static getSignIn() {
         signInModal.style.display = "block";
@@ -70,7 +76,7 @@ class User {
 
 
     static is_logged_in() {
-        if (current_user()) {
+        if (User.current_user()) {
             return true
         } else {
             return false
@@ -116,7 +122,7 @@ class User {
 
     static play_a_game() {
         User.update_page();
-        if (current_user) {
+        if (User.current_user) {
             board.style.display = '';
             tokens.style.display = '';
             game_msg.style.display = '';
@@ -160,17 +166,22 @@ class User {
 
         fetch(req_url, confObj).then((req) =>
             req.json()).then(response => {
-                if (response.nu_user_id === null) {
+                console.log(response);
+                if (response.data.id === null) {
                     alert("Could not sign up. Check email and password.");
                     $("#signInModal").modal('hide');
                 }
                 else {
-                    alert("Signed up successfuly.")
+                    alert("Signed up successfuly.");
                     $("#signInModal").modal('hide');
-                    sessionStorage.setItem('current_user', response.nu_user_id);
+                    user = new User(response.data.attributes.id, response.data.attributes.email);
+                    sessionStorage.setItem('current_user', user.id);
                     $("#signInModal").on('hidden.bs.modal', User.update_page());
+                    
                 }
+                
             })
+            
     }
 
     static logIn() {
@@ -344,7 +355,7 @@ logOutBtn.addEventListener('click', User.logout);
 playGameBtn.addEventListener('click', User.play_a_game);
 searchBox.addEventListener('keyup', User.search);
 allMyGames.addEventListener('click', User.getAllGames);
-deleteAccount.addEventListener('click', User.deleteUserAccount);
+
 
 
 

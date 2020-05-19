@@ -7,15 +7,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
         nu_user = User.find_or_create_by(email: params["email"])
         if nu_user.valid?
             if nu_user.valid_password?(params["password"])
-                render json: {nu_user_id: nu_user.id}.to_json
+                render json: UserSerializer.new(nu_user, {params:{password: params["password"]}}).serialized_json
             else
-                render json: {nu_user_id: nil}.to_json
+                render json: UserSerializer.new(nu_user, {params:{password: params["password"]}}).serialized_json
             end
         else
             nu_user.password = params["password"]
             nu_user.save
-            render json: {nu_user_id: nu_user.id,
-                            errors: nu_user.errors.messages}.to_json
+            render json: UserSerializer.new(nu_user, {params:{password: params["password"]}}).serialized_json
         end
 
     end
