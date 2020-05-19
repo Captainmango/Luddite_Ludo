@@ -297,6 +297,7 @@ class User {
                         let row = gamesTable.insertRow(0);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
+                        
                         cell1.innerHTML = `<a class="btn text-white" id="game${game.id}" href ="#" onclick="User.getGameTurns(${game.id})">${game.id}</a>'`;
                         cell2.innerHTML = game.attributes.created_at.toString(); 
                     }
