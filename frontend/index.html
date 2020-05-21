@@ -29,7 +29,7 @@
         </li>
 
         <li class="nav-item">
-          <button class="btn btn-large btn-info nav-link" onclick="home()">Home page</button>
+          <button class="btn btn-large btn-info nav-link" onclick="User.home()">Home page</button>
         </li>
         <!-- review games dropdown-->
         <li class="nav-item dropdown">
@@ -43,7 +43,6 @@
           </div>
         </li>
       </ul>
-      <button id="deleteAccount" class="btn btn-large btn-danger nav-link">Delete account</button>
       
       
     </div>
@@ -132,7 +131,7 @@
         
   <div id="tokens" style="display: none;">
       <!-- red pawns  start top:189px;left:476px-->
-      <div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"        style="background-color:red;top:310px;left:600px;display:;"></div>
+      <div class="pawns" id="redpawn1"    onclick="randomMove('red',1)"        style="background-color:red;top:310px;left:600px;"></div>
       <div class="pawns" id="redpawn2"    onclick="randomMove('red',2)"        style="background-color:red;top:260px;left:553px;"></div>
       <div class="pawns" id="redpawn3"    onclick="randomMove('red',3)"       style="background-color:red;top:215px;left:600px;"></div>
       <div class="pawns" id="redpawn4"    onclick="randomMove('red',4)"        style="background-color:red;top:260px;left:647px;"></div>
@@ -160,7 +159,7 @@
     <div id="dice" onclick="randomNum()" style="background-image:url(Images/dice.gif);background-size:contain; width:150px;height:150px; float:left;display: none;"></div>
     <div id="game_msg" class="container" style="display:none;">
     <h4 id="uselesstext1">It`s </h4><h3 id="player" style="float:left; color:red">red</h3><h4 class="text-left" id="uselesstext2">'s turn</h4>
-    <p id="badtext" style="float:left;"></p>
+    <p id="badtext" style="float:left;">test</p>
   </div>
     </div>
 
