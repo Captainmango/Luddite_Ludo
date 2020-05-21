@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def destroy
         user = User.find_by_id(params['id'])
         user.destroy
-        render json: {}.to_json
+        render json: UserSerializer.new(user).serialized_json
     end
 
 
