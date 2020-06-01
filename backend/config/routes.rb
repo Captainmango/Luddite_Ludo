@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   delete "/games/:id", to: "games#destroy"
 
   delete "users/:id", to: "registrations#destroy"
-  delete "turns/:id", to: "turns#destroy"
 
   resources :games, only: [:show] do
     get "/turns", to: "turns#index"

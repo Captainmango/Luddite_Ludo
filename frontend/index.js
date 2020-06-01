@@ -116,8 +116,12 @@ class User {
             diceBtns.style.visibility = "hidden";
             dice.style.display = "none";
             game_msg.style.display = "none";
-            $("#resultsTable tr").remove();
-            $("#gamesTable tr").remove();
+            while(gamesTable.rows.length > 0) {
+                gamesTable.deleteRow(0);
+              }
+            while(turnsTable.rows.length > 0) {
+                turnsTable.deleteRow(0);
+              }
 
         } else {
             dropDownMenu.classList.add('disabled')
@@ -192,10 +196,11 @@ class User {
                 }
                 else {
                     alert("Signed up successfuly.");
-                    $("#signInModal").modal('hide');
+                    document.getElementById("signInClose").click();
                     user = new User(response.data.attributes.id, response.data.attributes.email);
                     sessionStorage.setItem('current_user', user.id);
-                    $("#signInModal").on('hidden.bs.modal', User.update_page());
+                    document.getElementById("signInClose").click();
+                    User.update_page();
                     
                 }
                 
@@ -226,13 +231,13 @@ class User {
                 user = new User(response.data.attributes.id, response.data.attributes.email);
                 if (user.id === undefined) {
                     alert("Could not log in. Check email and password.");
-                    $("#logInModal").modal('hide');
+                    document.getElementById("logInClose").click();
                 }
                 else {
                     alert("Logged in successfuly.");
-                    $("#logInModal").modal('hide');
+                    document.getElementById("logInClose").click();
                     sessionStorage.setItem('current_user', user.id);
-                    $("#logInModal").on('hidden.bs.modal', User.update_page());
+                    User.update_page();
                 }
             })
     }
@@ -264,17 +269,6 @@ class User {
             })
     }
 
-    static search() {
-        $(document).ready(function () {
-            $("#myInput1").on("keyup", function () {
-                let value = $(this).val().toLowerCase();
-                $("#resultsTable tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-    }
-
     static getAllGames() {
         User.update_page();
         gamesTableContainer.style.display = '';
@@ -295,6 +289,7 @@ class User {
                 response.data.forEach(game => {
                     if (game.attributes.user_id == User.current_user()) {
                         let row = gamesTable.insertRow(0);
+                        row.setAttribute("id",`game${game.id}`);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
                         let cell3 = row.insertCell(2);
@@ -328,6 +323,7 @@ class User {
                 response.data.forEach(turn => {
                     if (turn.attributes.game_id == game_id) {
                         let row = turnsTable.insertRow(0);
+                        row.setAttribute("id", `turn${turn.id}`);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
                         let cell3 = row.insertCell(2);
@@ -358,8 +354,9 @@ class User {
         fetch(req_url, confObj).then(req => req.json()).then(response => {
             if(response.data.attributes.id){
                 alert(`Turn ${response.data.attributes.id} deleted successfully`);
-                User.getGameTurns(response.data.attributes.game_id);}
-            else{
+                let turnRow = document.getElementById(`turn${turn_id}`);
+                turnRow.remove();}
+            else {
                 User.home();
                 alert("Turn not deleted. Please search turns again");
             }
@@ -383,7 +380,9 @@ class User {
         fetch(req_url, confObj).then(req => req.json()).then(response => {
             if(response.data.attributes.id){
                 alert(`Game ${response.data.attributes.id} deleted successfully`);
-                User.getAllGames();}
+                let gameRow = document.getElementById(`game${game_id}`);
+                gameRow.remove();
+                }
             else{
                 User.home();
                 alert("Game not deleted. Please search games again");
@@ -404,7 +403,6 @@ logInBtn.addEventListener('click', User.getLogIn);
 logInToAcc.addEventListener('click', User.logIn);
 logOutBtn.addEventListener('click', User.logout);
 playGameBtn.addEventListener('click', User.play_a_game);
-searchBox.addEventListener('keyup', User.search);
 allMyGames.addEventListener('click', User.getAllGames);
 
 
