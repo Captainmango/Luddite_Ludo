@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {sessions: "sessions",
-                                  registrations: "registrations"
+  devise_for :users, controllers: {sessions: "users/sessions",
+                                  registrations: "users/registrations"
                                   }
   post "/games", to: "games#create"
   get "/games", to: "games#index"
